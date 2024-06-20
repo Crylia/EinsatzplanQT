@@ -4,6 +4,7 @@
 # include <QPushButton>
 # include <QInputDialog>
 # include <QLabel>
+# include <QVBoxLayout>
 
 class LoginFrame : public QFrame{
     Q_OBJECT
