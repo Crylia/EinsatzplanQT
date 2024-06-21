@@ -34,10 +34,11 @@ LoginFrame::LoginFrame(QWidget* parent)
     id_m->setObjectName("ID");
     id_m->setStyleSheet(R"(
     #ID{
-        color: #93F8FF;
+        color: #333333;
         font-size: 25px;
         font-weight: bold;
         border: none;
+        background-color: #444444;
     }
     )");
     id_m->show();
@@ -47,10 +48,11 @@ LoginFrame::LoginFrame(QWidget* parent)
     password_m->setObjectName("Password");
     password_m->setStyleSheet(R"(
     #Password{
-        color: #93F8FF;
+        color: #333333;
         font-size: 25px;
         font-weight: bold;
         border: none;
+        background-color: #444444;
     }
     )");
     password_m->show();
