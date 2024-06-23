@@ -1,6 +1,6 @@
 #include "EinsatzplanWindow.hpp"
 
-EinsatzplanWindow::EinsatzplanWindow(QWidget* parent, std::string id, bool admin)
+EinsatzplanWindow::EinsatzplanWindow(QWidget* parent, QString id, bool admin)
 :QMainWindow(parent)
 {
     frame_m = new EinsatzplanFrame(this, id, admin);

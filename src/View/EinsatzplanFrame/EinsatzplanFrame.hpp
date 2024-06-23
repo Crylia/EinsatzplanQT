@@ -18,5 +18,5 @@ protected:
     QPushButton* deleteVeranstaltungButton_m;
 
 public:
-    EinsatzplanFrame(QWidget* parent = nullptr, std::string id, bool admin);
+    EinsatzplanFrame(QWidget* parent = nullptr, QString id, bool admin);
 };
