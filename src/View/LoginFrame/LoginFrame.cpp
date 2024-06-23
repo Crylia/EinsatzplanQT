@@ -114,7 +114,7 @@ void LoginFrame::loginButtonClicked(){
     }
     else {
         LoginFrameController* controller = new LoginFrameController();
-        if (!controller->tryLogin(id.toStdString(), password.toStdString())){
+        if (!controller->tryLogin(id, password)){
             QMessageBox:: warning(this, "Error", "ID und Passwort stimmen nicht überein!");
         }
         else{

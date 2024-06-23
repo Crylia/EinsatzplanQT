@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
+#include <QString>
 
 class LoginFrameController{
 private:
 public:
     LoginFrameController();
-    bool tryLogin(std::string id, std::string password);
+    bool tryLogin(QString id, QString password);
 };

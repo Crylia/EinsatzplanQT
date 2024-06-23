@@ -5,9 +5,10 @@ LoginFrameController::LoginFrameController()
 
 }
 
-bool LoginFrameController::tryLogin(std::string id, std::string password){
+bool LoginFrameController::tryLogin(QString id, QString password){
     //DatabaseHandler dbHandler = new Databasehandler();
     //dbHandler.CheckValidLogin();
-
+    
+    
     return true;
 }
