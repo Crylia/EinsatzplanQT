@@ -83,78 +83,94 @@ CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/EinsatzplanQT_autogen/mocs_compilation.cpp" -o CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.s
 
-CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
-CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o: ../src/Controller/LoginFrameController/LoginFrameController.cpp
-CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/LoginFrameController/LoginFrameController.cpp"
+CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o: ../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp
+CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp"
 
-CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/LoginFrameController/LoginFrameController.cpp" > CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.i
+CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp" > CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.i
 
-CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/LoginFrameController/LoginFrameController.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.s
+CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.s
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o: ../src/View/LoginFrame/LoginFrame.cpp
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginFrame/LoginFrame.cpp"
+CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o: ../src/Controller/PlanGridController/PlanGridController.cpp
+CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/PlanGridController/PlanGridController.cpp"
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginFrame/LoginFrame.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.i
+CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/PlanGridController/PlanGridController.cpp" > CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.i
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginFrame/LoginFrame.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.s
+CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/PlanGridController/PlanGridController.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.s
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o: ../src/View/LoginWindow/LoginWindow.cpp
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginWindow/LoginWindow.cpp"
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o: ../src/View/EinsatzplanFrame/EinsatzplanFrame.cpp
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp"
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginWindow/LoginWindow.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.i
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.i
 
-CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginWindow/LoginWindow.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.s
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.s
 
-CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
-CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp
-CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/main.cpp"
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o: ../src/View/EinsatzplanWindow/EinsatzplanWindow.cpp
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp"
 
-CMakeFiles/EinsatzplanQT.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/main.cpp" > CMakeFiles/EinsatzplanQT.dir/src/main.cpp.i
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.i
 
-CMakeFiles/EinsatzplanQT.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/main.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/main.cpp.s
+CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.s
+
+CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o: ../src/View/PlanGrid/PlanGrid.cpp
+CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.cpp"
+
+CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.i
+
+CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s
 
 # Object files for target EinsatzplanQT
 EinsatzplanQT_OBJECTS = \
 "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o" \
-"CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o" \
-"CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o" \
-"CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o" \
-"CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o"
+"CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o" \
+"CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o" \
+"CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o" \
+"CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o" \
+"CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o"
 
 # External object files for target EinsatzplanQT
 EinsatzplanQT_EXTERNAL_OBJECTS =
 
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o
-EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/Controller/LoginFrameController/LoginFrameController.cpp.o
-EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/LoginFrame/LoginFrame.cpp.o
-EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/LoginWindow/LoginWindow.cpp.o
-EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/PlanGridController.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/build.make
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libQt6Svg.so.6.2.4
@@ -164,7 +180,7 @@ EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libGLX.so
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable EinsatzplanQT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable EinsatzplanQT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EinsatzplanQT.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
