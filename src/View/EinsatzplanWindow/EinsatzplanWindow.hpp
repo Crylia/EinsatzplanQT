@@ -9,5 +9,5 @@ private:
 
 
 public:
-    EinsatzplanWindow(QWidget* parent = nullptr, bool admin);
+    EinsatzplanWindow(QWidget* parent = nullptr, std::string id, bool admin);
 };
