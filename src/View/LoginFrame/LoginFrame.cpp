@@ -30,29 +30,33 @@ LoginFrame::LoginFrame(QWidget* parent)
     header_m->show();
     
 
-    id_m = new QLineEdit("ID...", this);
+    id_m = new QLineEdit( this);
+    id_m->setPlaceholderText("ID...");
     id_m->setObjectName("ID");
     id_m->setStyleSheet(R"(
     #ID{
         color: #333333;
         font-size: 25px;
         font-weight: bold;
-        border: none;
         background-color: #444444;
+        border-radius: 10px;
+        padding: 5px;
     }
     )");
     id_m->show();
 
 
-    password_m = new QLineEdit("Passwort...",this);
+    password_m = new QLineEdit(this);
+    password_m->setPlaceholderText("Passwort...");
     password_m->setObjectName("Password");
     password_m->setStyleSheet(R"(
     #Password{
         color: #333333;
         font-size: 25px;
         font-weight: bold;
-        border: none;
         background-color: #444444;
+        border-radius: 10px;
+        padding: 5px;
     }
     )");
     password_m->show();
@@ -65,6 +69,10 @@ LoginFrame::LoginFrame(QWidget* parent)
         font-size: 30px;
         font-weight: bold;
         background-color: #00C800;
+        border-radius: 10px;
+    }
+    #loginButton:pressed {
+        background-color: #00A800;
     }
     )");
     loginButton_m->show();
@@ -72,6 +80,8 @@ LoginFrame::LoginFrame(QWidget* parent)
     
     //create layout
     QVBoxLayout*  layout = new QVBoxLayout();
+
+    layout->setContentsMargins(50, 20, 50, 20);
 
     layout->addStretch(1);
     layout->addWidget(header_m);
@@ -88,4 +98,23 @@ LoginFrame::LoginFrame(QWidget* parent)
 
     //add Layout to LoginFrame
     setLayout(layout);
+
+    //connect loginButton with function
+    connect(loginButton_m, &QPushButton::clicked, this, &LoginFrame::loginButtonClicked);
+}
+
+    //try Login if Button clicked
+void LoginFrame::loginButtonClicked(){
+    QString id = id_m->text();
+    QString password = password_m->text();
+
+    //check if Contents Valid
+    if (id.isEmpty() || password.isEmpty()){
+        QMessageBox::warning(this, "Fehler", "Bitte füllen Sie sowohl die ID als auch das Passwort aus.");
+    }
+    else {
+        LoginFrameController* controller = new LoginFrameController();
+        bool valid = controller->tryLogin(id.toStdString(), password.toStdString());
+    }
+
 }
