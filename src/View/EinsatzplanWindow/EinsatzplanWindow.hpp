@@ -2,12 +2,12 @@
 # include <QMainWindow>
 # include "../EinsatzplanFrame/EinsatzplanFrame.hpp"
 
-class LoginWindow : public QMainWindow{
+class EinsatzplanWindow : public QMainWindow{
     Q_OBJECT
 private:
     EinsatzplanFrame* frame_m;
 
 
 public:
-    EinsatzplanWindow(QWidget* parent = nullptr);
+    EinsatzplanWindow(QWidget* parent = nullptr, bool admin);
 };
