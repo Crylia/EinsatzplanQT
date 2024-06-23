@@ -14,6 +14,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o.d"
   "CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o"
   "CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o.d"
+  "CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o"
+  "CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o.d"
   "EinsatzplanQT"
   "EinsatzplanQT.pdb"
 )
