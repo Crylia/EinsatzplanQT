@@ -6,11 +6,13 @@
 # include <QLabel>
 # include <QVBoxLayout>
 # include <QMessageBox>
+# include <QMainWindow>
 # include "../../Controller/LoginFrameController/LoginFrameController.hpp"
 
 class LoginFrame : public QFrame{
     Q_OBJECT
 protected:
+    QMainWindow* parent_m;
     QLabel* header_m;
     QLineEdit* id_m;
     QLineEdit* password_m;
@@ -20,4 +22,5 @@ protected:
 
 public:
     LoginFrame(QWidget* parent = nullptr);
+    ~LoginFrame();
 };

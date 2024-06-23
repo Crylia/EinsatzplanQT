@@ -110,11 +110,23 @@ void LoginFrame::loginButtonClicked(){
 
     //check if Contents Valid
     if (id.isEmpty() || password.isEmpty()){
-        QMessageBox::warning(this, "Fehler", "Bitte füllen Sie sowohl die ID als auch das Passwort aus.");
+        QMessageBox::warning(this, "Error", "Bitte füllen Sie sowohl die ID als auch das Passwort aus.");
     }
     else {
         LoginFrameController* controller = new LoginFrameController();
-        bool valid = controller->tryLogin(id.toStdString(), password.toStdString());
+        if (!controller->tryLogin(id.toStdString(), password.toStdString())){
+            QMessageBox:: warning(this, "Error", "ID und Passwort stimmen nicht überein!");
+        }
+        else{
+            this->~LoginFrame();
+        }
     }
+}
 
+LoginFrame::~LoginFrame(){
+    header_m->~QLabel();
+    id_m->~QLineEdit();
+    password_m->~QLineEdit();
+    loginButton_m->~QPushButton();
+    parent_m->~QMainWindow();
 }
