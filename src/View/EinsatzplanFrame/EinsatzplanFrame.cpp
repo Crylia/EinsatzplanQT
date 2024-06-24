@@ -1,6 +1,8 @@
 # include "EinsatzplanFrame.hpp"
 
-EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin){
+EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
+:QFrame(parent)
+{
     setFrameStyle(QFrame::Box);
 
     profileImg_m = new QLabel(this);

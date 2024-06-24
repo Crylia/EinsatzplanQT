@@ -1,9 +1,11 @@
+# pragma once
 # include <QFrame>
 # include <QLabel>
 # include <QPushButton>
 # include "../PlanGrid/PlanGrid.hpp"
 
 class EinsatzplanFrame : public QFrame{
+    Q_OBJECT
 protected:
     QLabel* profileImg_m;
     QLabel* id_m;
