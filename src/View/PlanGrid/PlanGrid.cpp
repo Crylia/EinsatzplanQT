@@ -29,18 +29,36 @@ PlanGrid::PlanGrid(QWidget* parent)
 	times[9] = "17:00 - 18:00";
 
 
+
 	planMap = new QMap<QPair<QString, QString>, QLabel*>( );
 
 	gridLayout = new QGridLayout(this);
 
 	for (int i = 0; i < 5; ++i) {
 		for (int j = 0; j < 10; ++j) {
-			planMap->insert(qMakePair(weekdays[i], times[j]), nullptr);
+			QLabel* temp = new QLabel();
+			temp->setObjectName("temp");
+			temp->setStyleSheet(R"(
+			#temp{
+				
+			}
+			)");
+			temp->setFixedSize(250,40);
+			planMap->insert(qMakePair(weekdays[i], times[j]), temp);
 		}
 	}
 
+	populateGrid();
+
+
 	QLabel* temp = new QLabel();
-	temp->setFixedSize(124,100);
+	temp->setObjectName("temp");
+	temp->setStyleSheet(R"(
+	#temp{
+		border-top-left-radius: 10px;
+	}
+	)");
+	temp->setFixedSize(140,80);
 	gridLayout->addWidget(temp, 0, 0);
 
 	for (int i = 0; i < 5; i++) {
@@ -51,24 +69,34 @@ PlanGrid::PlanGrid(QWidget* parent)
 		#temp{
 			font-size: 24px;
 			font-weight: bold;
-			color: #d8d8d8
+			color: #d8d8d8;
 		}
 		)");
 		gridLayout->addWidget(temp, 0, i+1,Qt::AlignCenter);
 	}
+
 	for (int i = 0; i < 10; i++) {
 		QLabel* temp = new QLabel(times[i]);
-		temp->setFixedSize(124,50);
+		temp->setFixedSize(140,40);
 		temp->setObjectName("temp");
 		temp->setStyleSheet(R"(
 		#temp{
 			font-size: 16px;
 			font-weight: bold;
-			color: #d8d8d8
+			color: #d8d8d8;
 		}
 		)");
 		gridLayout->addWidget(temp, i+1, 0, Qt::AlignCenter);
 	}
 
+	gridLayout->setSpacing(0);
 	setLayout(gridLayout);
+}
+
+void PlanGrid::populateGrid(){
+	for (int i = 0; i<5; i++){
+		for (int j = 0; j < 10; ++j){
+			gridLayout->addWidget(planMap->value(qMakePair(weekdays[i],times[j])),j+1,i+1);
+		}
+	} 
 }

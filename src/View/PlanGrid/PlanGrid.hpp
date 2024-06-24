@@ -9,6 +9,8 @@ class PlanGrid : public QWidget {
 private:
     QString weekdays[5];
     QString times[10];
+    
+    void populateGrid();
 protected:
     QGridLayout* gridLayout;
     QMap<QPair<QString, QString>, QLabel*>* planMap;

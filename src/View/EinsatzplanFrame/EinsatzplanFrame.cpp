@@ -68,7 +68,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
     planGrid_m->show();
 
     QVBoxLayout* totalLayout = new QVBoxLayout(this);
-    totalLayout->setContentsMargins(50,20,50,20);
+    totalLayout->setContentsMargins(30,20,30,20);
 
     QHBoxLayout* topLayout = new QHBoxLayout(this);
     topLayout->addWidget(profileImg_m, 1, Qt::AlignLeft);
@@ -83,7 +83,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
     
 
     totalLayout->addLayout(topLayout);
-    totalLayout->addLayout(bottomLayout);
+    totalLayout->addLayout(bottomLayout,2);
 
 
 
@@ -116,6 +116,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
             background-color: #DCFF78;
             border-radius: 10px;
         }
+        #deleteMember:pressed{
+            background-color: #CCEF68;
+        }
         )");
         deleteMemberButton_m->show();
 
@@ -129,6 +132,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
             font-weight: bold;
             background-color: #DCFF78;
             border-radius: 10px;
+        }
+        #createVeranstaltung:pressed{
+            background-color: #CCEF68;
         }
         )");
         createVeranstaltungButton_m->show();
@@ -144,14 +150,18 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
             background-color: #DCFF78;
             border-radius: 10px;
         }
+        #deleteVeranstaltung:pressed{
+            background-color: #CCEF68;
+        }
         )");
         deleteVeranstaltungButton_m->show();
 
         QHBoxLayout* adminLayout = new QHBoxLayout(this);
-        adminLayout->addWidget(createMemberButton_m, 1, Qt::AlignCenter);
-        adminLayout->addWidget(deleteMemberButton_m,1 , Qt::AlignCenter);
-        adminLayout->addWidget(createVeranstaltungButton_m,1 , Qt::AlignCenter);
-        adminLayout->addWidget(deleteVeranstaltungButton_m,1 , Qt::AlignCenter);
+        adminLayout->addWidget(createMemberButton_m, 1, Qt::AlignLeft);
+        adminLayout->addWidget(deleteMemberButton_m,1 , Qt::AlignLeft);
+        adminLayout->addStretch(1);
+        adminLayout->addWidget(createVeranstaltungButton_m,1 , Qt::AlignRight);
+        adminLayout->addWidget(deleteVeranstaltungButton_m,1 , Qt::AlignRight);
         
         totalLayout->addLayout(adminLayout);
 
