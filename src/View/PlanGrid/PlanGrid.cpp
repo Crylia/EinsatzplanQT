@@ -23,19 +23,40 @@ PlanGrid::PlanGrid(QWidget* parent) :
 
 	planMap = new QMap<QPair<QString, QString>, QLabel*>( );
 
+	gridLayout = new QGridLayout(this);
+
 	for (int i = 0; i < 5; ++i) {
 		for (int j = 0; j < 10; ++j) {
 			planMap->insert(qMakePair(weekdays[i], times[j]), nullptr);
 		}
 	}
-
-	for (int i = 1; i <= 5; i++) {
-		gridLayout->addWidget(new QLabel(weekdays[i]), 0, i);
+	
+	for (int i = 0; i < 5; i++) {
+		QLabel* temp = new QLabel(weekdays[i]);
+		temp->setFixedSize(250,70);
+		temp->setObjectName("temp");
+		temp->setStyleSheet(R"(
+		#temp{
+			font-size: 24px;
+			font-weight: bold;
+			color: #d8d8d8
+		}
+		)");
+		gridLayout->addWidget(temp, 0, i+1,Qt::AlignCenter);
 	}
 	for (int i = 0; i < 10; i++) {
-		gridLayout->addWidget(new QLabel(times[i]), i, 0);
+		QLabel* temp = new QLabel(times[i]);
+		temp->setFixedSize(124,50);
+		temp->setObjectName("temp");
+		temp->setStyleSheet(R"(
+		#temp{
+			font-size: 16px;
+			font-weight: bold;
+			color: #d8d8d8
+		}
+		)");
+		gridLayout->addWidget(temp, i+1, 0, Qt::AlignCenter);
 	}
-
 
 	setLayout(gridLayout);
 }
