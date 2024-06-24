@@ -99,6 +99,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
             background-color: #DCFF78;
             border-radius: 10px;
         }
+        #createMember:pressed{
+            background-color: #CCEF68;
+        }
         )");
         createMemberButton_m->show();
 

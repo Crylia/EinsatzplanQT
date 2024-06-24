@@ -5,9 +5,9 @@ PlanGrid::PlanGrid(QWidget* parent)
 {
 	setObjectName("PlanGrid");
 	setStyleSheet(R"(
-	#PlanGrid{
+	QWidget{
 		background-color: #313131;
-		border: solid #414141 2px;
+		border: 2px solid #414141;
 	}
 	)");
 
@@ -38,10 +38,14 @@ PlanGrid::PlanGrid(QWidget* parent)
 			planMap->insert(qMakePair(weekdays[i], times[j]), nullptr);
 		}
 	}
-	
+
+	QLabel* temp = new QLabel();
+	temp->setFixedSize(124,100);
+	gridLayout->addWidget(temp, 0, 0);
+
 	for (int i = 0; i < 5; i++) {
 		QLabel* temp = new QLabel(weekdays[i]);
-		temp->setFixedSize(250,70);
+		temp->setFixedSize(250,80);
 		temp->setObjectName("temp");
 		temp->setStyleSheet(R"(
 		#temp{
