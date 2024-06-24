@@ -96,6 +96,8 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         #createMember{
             font-size: 16px;
             font-weight: bold;
+            background-color: #DCFF78;
+            border-radius: 10px;
         }
         )");
         createMemberButton_m->show();
@@ -108,6 +110,8 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         #deleteMember{
             font-size: 16px;
             font-weight: bold;
+            background-color: #DCFF78;
+            border-radius: 10px;
         }
         )");
         deleteMemberButton_m->show();
@@ -120,6 +124,8 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         #createVeranstaltung{
             font-size: 16px;
             font-weight: bold;
+            background-color: #DCFF78;
+            border-radius: 10px;
         }
         )");
         createVeranstaltungButton_m->show();

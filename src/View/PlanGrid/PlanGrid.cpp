@@ -1,7 +1,15 @@
 # include "PlanGrid.hpp"
 
-PlanGrid::PlanGrid(QWidget* parent) :
-	QWidget(parent) {
+PlanGrid::PlanGrid(QWidget* parent) 
+:QWidget(parent) 
+{
+	setObjectName("PlanGrid");
+	setStyleSheet(R"(
+	#PlanGrid{
+		background-color: #313131;
+		border: solid #414141 2px;
+	}
+	)");
 
 	weekdays[0] = "Montag";
 	weekdays[1] = "Dienstag";
