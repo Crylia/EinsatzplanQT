@@ -1,9 +1,9 @@
 # pragma once
-# include <QWidget>
+# include <QGridLayout>
 
-class PlanGrid : QWidget{
-    Q_OBJECT
+class PlanGrid {
 protected:
+    QGridLayout* gridLayout;
 public:
     PlanGrid(QWidget* parent = nullptr);
 };

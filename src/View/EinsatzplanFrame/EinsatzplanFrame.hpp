@@ -2,7 +2,10 @@
 # include <QFrame>
 # include <QLabel>
 # include <QPushButton>
+# include <QVBoxLayout>
+# include <QHBoxLayout>
 # include "../PlanGrid/PlanGrid.hpp"
+
 
 class EinsatzplanFrame : public QFrame{
     Q_OBJECT
@@ -20,5 +23,5 @@ protected:
     QPushButton* deleteVeranstaltungButton_m;
 
 public:
-    EinsatzplanFrame(QWidget* parent = nullptr, QString id = nullptr, bool admin = false);
+    EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
 };
