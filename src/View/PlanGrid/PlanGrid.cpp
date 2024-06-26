@@ -42,7 +42,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 				
 			}
 			)");
-			temp->setFixedSize(240, 40);
+			temp->setFixedSize(240, 50);
 			planMap->insert(qMakePair(weekdays[i], times[j]), temp);
 		}
 	}
@@ -89,7 +89,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 
 	for (int i = 0; i < 10; i++) {
 		QLabel* temp = new QLabel(times[i]);
-		temp->setFixedSize(130, 40);
+		temp->setFixedSize(130,50);
 		temp->setObjectName("temp");
 		if (i == 9) {
 			temp->setStyleSheet(R"(

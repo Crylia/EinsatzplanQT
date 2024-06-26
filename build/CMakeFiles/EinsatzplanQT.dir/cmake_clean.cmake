@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/EinsatzplanQT_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/EinsatzplanQT_autogen.dir/ParseCache.txt"
   "EinsatzplanQT_autogen"
+  "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o"
+  "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o.d"
   "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/EinsatzplanQT.dir/src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.cpp.o"
@@ -18,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o.d"
   "EinsatzplanQT"
   "EinsatzplanQT.pdb"
+  "EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp"
 )
 
 # Per-language clean rules from dependency scanning.

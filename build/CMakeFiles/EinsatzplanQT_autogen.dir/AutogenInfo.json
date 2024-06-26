@@ -409,7 +409,8 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Sql/Qt6SqlTargets.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Sql/Qt6SqlTargets-none.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake",
-		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Sql/Qt6SqlVersionlessTargets.cmake"
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Sql/Qt6SqlVersionlessTargets.cmake",
+		"/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/assets/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT",
 	"DEP_FILE" : "",

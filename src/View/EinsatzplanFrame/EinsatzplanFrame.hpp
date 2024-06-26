@@ -4,6 +4,8 @@
 # include <QPushButton>
 # include <QVBoxLayout>
 # include <QHBoxLayout>
+# include <QMainWindow>
+# include <QApplication>
 # include "../PlanGrid/PlanGrid.hpp"
 
 
@@ -24,4 +26,13 @@ protected:
 
 public:
     EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
+
+private: slots
+
+    void abmelden();
+    void deleteVeranstaltung();
+    void createVeranstaltung();
+    void deleteMember();
+    void createMember();
+
 };

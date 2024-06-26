@@ -14,10 +14,11 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 
 	profileImg_m = new QLabel(this);
 	profileImg_m->setFixedSize(60, 60);
+	profileImg_m->setPixmap(QPixmap(":account-box.png"));
 	profileImg_m->setObjectName("profileImg");
 	profileImg_m->setStyleSheet(R"(
     #profileImg{
-        background-color: #000000;
+        
     }
     )");
 	profileImg_m->show( );
@@ -28,7 +29,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	id_m->setObjectName("id");
 	id_m->setStyleSheet(R"(
     #id{
-    
+		font-size: 24px;
+		color: #d8d8d8;
+		font-weight: bold;
     }
     )");
 	id_m->show( );
@@ -51,13 +54,19 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
     )");
 	abmeldenButton_m->show( );
 
+	//implement logoutButton functionality
+	connect(abmeldenButton_m, &QPushButton::clicked, this, &EinsatzplanFrame::abmelden);
+
 
 	einsatzplanLabel_m = new QLabel("Einsatzplan", this);
 	einsatzplanLabel_m->setFixedSize(645, 80);
+	einsatzplanLabel_m->setAlignment(Qt::AlignCenter);
 	einsatzplanLabel_m->setObjectName("einsatzplanLabel");
 	einsatzplanLabel_m->setStyleSheet(R"(
     #einsatzplanLabel{
-    
+		font-size:40px;
+		color: #7FF;
+		font-weight: bold;
     }
     )");
 	einsatzplanLabel_m->show( );
@@ -66,23 +75,26 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	planGrid_m = new PlanGrid(this);
 	planGrid_m->show( );
 
+
+
 	QVBoxLayout* totalLayout = new QVBoxLayout(this);
 	totalLayout->setContentsMargins(30, 20, 30, 20);
 
 	QHBoxLayout* topLayout = new QHBoxLayout(this);
-	topLayout->addWidget(profileImg_m, 1, Qt::AlignLeft);
-	topLayout->addWidget(id_m, 1, Qt::AlignLeft);
-	topLayout->addWidget(einsatzplanLabel_m, 7, Qt::AlignCenter);
-	topLayout->addWidget(abmeldenButton_m, 1, Qt::AlignRight);
+	topLayout->addWidget(profileImg_m, 0, Qt::AlignLeft);
+	topLayout->addSpacing(10);
+	topLayout->addWidget(id_m, 0, Qt::AlignLeft);
+	topLayout->addWidget(einsatzplanLabel_m, 4, Qt::AlignCenter);
+	topLayout->addWidget(abmeldenButton_m, 0, Qt::AlignRight);
+
 
 	QHBoxLayout* bottomLayout = new QHBoxLayout(this);
 	bottomLayout->addWidget(planGrid_m, 1, Qt::AlignCenter);
 
 
-
-
-	totalLayout->addLayout(topLayout);
-	totalLayout->addLayout(bottomLayout, 2);
+	//make bottomLayout bigger then topLayout
+	totalLayout->addLayout(topLayout,1);
+	totalLayout->addLayout(bottomLayout, 4);
 
 
 
@@ -105,6 +117,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         )");
 		createMemberButton_m->show( );
 
+		//implement createMemberButton functionality
+		connect(createMemberButton_m, &QPushButton::clicked, this, &EinsatzplanFrame::createMember);
+
 
 		deleteMemberButton_m = new QPushButton("Mitarbeiter\nEntfernen", this);
 		deleteMemberButton_m->setFixedSize(200, 50);
@@ -122,6 +137,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         }
         )");
 		deleteMemberButton_m->show( );
+
+		//implement deleteMemberButton functionality
+		connect(deleteMemberButton_m, &QPushButton::clicked, this, &EinsatzplanFrame::deleteMember);
 
 
 		createVeranstaltungButton_m = new QPushButton("Veranstaltung\nHinzufügen", this);
@@ -141,6 +159,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         )");
 		createVeranstaltungButton_m->show( );
 
+		//implement createVeranstaltungButton functionality
+		connect(createVeranstaltungButton_m, &QPushButton::clicked, this, &EinsatzplanFrame::createVeranstaltung);
+
 
 		deleteVeranstaltungButton_m = new QPushButton("Veranstaltung\nEntfernen", this);
 		deleteVeranstaltungButton_m->setFixedSize(200, 50);
@@ -159,6 +180,9 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
         )");
 		deleteVeranstaltungButton_m->show( );
 
+		//implement deleteVeranstaltungButton functionality
+		connect(deleteVeranstaltungButton_m, &QPushButton::clicked, this, &EinsatzplanFrame::deleteVeranstaltung);
+
 		QHBoxLayout* adminLayout = new QHBoxLayout(this);
 		adminLayout->addWidget(createMemberButton_m, 1, Qt::AlignLeft);
 		adminLayout->addWidget(deleteMemberButton_m, 1, Qt::AlignLeft);
@@ -169,4 +193,24 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 		totalLayout->addLayout(adminLayout);
 
 	}
+}
+
+void EinsatzplanFrame::abmelden(){
+	((QApplication*)(parent()->parent()))->exit();
+}
+
+void EinsatzplanFrame::deleteVeranstaltung(){
+
+}
+
+void EinsatzplanFrame::createVeranstaltung(){
+
+}
+
+void EinsatzplanFrame::deleteMember(){
+
+}
+
+void EinsatzplanFrame::createMember(){
+
 }
