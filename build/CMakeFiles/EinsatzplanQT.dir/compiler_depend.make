@@ -1994,7 +1994,7 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication_platform.h \
-  ../src/View/EinsatzplanWindow/EinsatzplanWindow.hpp \
+  ../src/View/LoginWindow/LoginWindow.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
@@ -2007,35 +2007,72 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qicon.h \
-  ../src/View/EinsatzplanFrame/EinsatzplanFrame.hpp \
+  ../src/View/LoginFrame/LoginFrame.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFrame \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QInputDialog \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qinputdialog.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextcursor.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextdocument.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QVBoxLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
-  ../src/View/PlanGrid/PlanGrid.hpp \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmessagebox.h \
+  ../src/Controller/LoginFrameController/LoginFrameController.hpp \
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h
 
+
+/usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/istream:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmessagebox.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QInputDialog:
+
+../src/View/LoginFrame/LoginFrame.hpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication_platform.h:
 
@@ -2065,6 +2102,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h:
 
+/usr/include/c++/11/cwctype:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextcursor.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h:
@@ -2086,6 +2125,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h:
 
@@ -2177,6 +2218,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopedpointer.h:
 
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qiterator.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h:
@@ -2188,6 +2231,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qhashfunctions.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringtokenizer.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QString:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qbytearraylist.h:
 
@@ -2257,11 +2302,15 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/c++/11/ext/concurrence.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject_impl.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasicatomic.h:
+
+../src/View/LoginWindow/LoginWindow.hpp:
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
@@ -2305,6 +2354,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
+../src/Controller/LoginFrameController/LoginFrameController.hpp:
+
 /usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h:
@@ -2323,6 +2374,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
+/usr/include/c++/11/bits/locale_facets.tcc:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
@@ -2339,6 +2392,8 @@ EinsatzplanQT_autogen/mocs_compilation.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
+/usr/include/c++/11/bits/ostream.tcc:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydataops.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
@@ -2354,6 +2409,8 @@ EinsatzplanQT_autogen/mocs_compilation.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qutf8stringview.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
+
+/usr/include/c++/11/bits/basic_ios.h:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
@@ -2559,6 +2616,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 
 /usr/include/features.h:
 
+/usr/include/c++/11/ios:
+
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
 /usr/include/c++/11/utility:
@@ -2566,6 +2625,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qinputdialog.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
@@ -2596,6 +2657,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 /usr/include/c++/11/bits/range_access.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
 
 /usr/include/c++/11/bits/exception.h:
 
@@ -2713,6 +2776,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
+/usr/include/c++/11/bits/basic_ios.tcc:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringmatcher.h:
 
 /usr/include/c++/11/bits/enable_special_members.h:
@@ -2735,6 +2800,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 
 /usr/include/c++/11/optional:
 
+/usr/include/wctype.h:
+
 /usr/include/sched.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtypeinfo.h:
@@ -2746,6 +2813,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qsysinfo.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtgui-config.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h:
 
@@ -2774,6 +2843,8 @@ EinsatzplanQT_autogen/B7S36HPG3O/moc_EinsatzplanFrame.cpp:
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
 /usr/include/c++/11/bits/ios_base.h:
+
+/usr/include/c++/11/iostream:
 
 /usr/include/c++/11/bits/node_handle.h:
 

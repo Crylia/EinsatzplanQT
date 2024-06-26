@@ -2001,7 +2001,7 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication_platform.h
- /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanWindow/EinsatzplanWindow.hpp
+ /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginWindow/LoginWindow.hpp
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h
@@ -2014,32 +2014,53 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qicon.h
- /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/EinsatzplanFrame/EinsatzplanFrame.hpp
+ /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/LoginFrame/LoginFrame.hpp
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFrame
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QInputDialog
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qinputdialog.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextcursor.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextdocument.h
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QVBoxLayout
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout
- /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.hpp
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmessagebox.h
+ /home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/Controller/LoginFrameController/LoginFrameController.hpp
+ /usr/include/c++/11/iostream
+ /usr/include/c++/11/ostream
+ /usr/include/c++/11/ios
+ /usr/include/c++/11/bits/basic_ios.h
+ /usr/include/c++/11/bits/locale_facets.h
+ /usr/include/c++/11/cwctype
+ /usr/include/wctype.h
+ /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h
+ /usr/include/c++/11/bits/locale_facets.tcc
+ /usr/include/c++/11/bits/basic_ios.tcc
+ /usr/include/c++/11/bits/ostream.tcc
+ /usr/include/c++/11/istream
+ /usr/include/c++/11/bits/istream.tcc
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QString
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h
 
