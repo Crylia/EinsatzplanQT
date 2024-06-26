@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>account-box.png</file>
+    </qresource>
+</RCC>
