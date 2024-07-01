@@ -100,3 +100,34 @@ CREATE TABLE krank (
 ('B', '208', 'Webtechnologien', 2),
 ('A', '109', 'Computergrafikgrundlagen', 2),
 ('B', '210', 'Maschinelles Lernen', 2);
+
+
+INSERT INTO Veranstalter_Veranstaltung_Uhrzeit (uhrzeit_ID, tag, veranstaltung_ID) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 2),
+(4, 1, 3),
+
+(1, 2, 4),
+(2, 2, 4),
+(3, 2, 5),
+(4, 2, 6),
+(5, 2, 6),
+
+(1, 3, 7),
+(2, 3, 8),
+(3, 3, 9),
+(4, 3, 10),
+(5, 3, 1),
+
+(1, 4, 2),
+(2, 4, 2),
+(3, 4, 3),
+(4, 4, 4),
+(5, 4, 4),
+
+(1, 5, 5),
+(2, 5, 6),
+(3, 5, 6),
+(4, 5, 7),
+(5, 5, 8);
