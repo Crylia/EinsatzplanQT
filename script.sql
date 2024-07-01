@@ -23,10 +23,10 @@ CREATE TABLE krank (
 
 
             
- CREATE VIEW studenten_veranstalterr AS 
+ CREATE VIEW studenten_veranstalter AS 
  SELECT matrikelnummer AS id, passwort, NULL AS admin FROM Studenten 
      UNION ALL 
- SELECT ID, passwort, admin FROM Veranstalterrrr;
+ SELECT ID, passwort, admin FROM Veranstalter;
 
 
 
