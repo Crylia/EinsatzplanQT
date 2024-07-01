@@ -11,16 +11,16 @@ public:
 	DBPlan(std::string connStr);
 	void meldeKrank(int id);
 	void meldeGesund(int id);
-	bool deleteVeranstaltung(int id);
-	bool hinzufuegenVeranstaltung(); //Zu Liste mit Veranstaltungen oder direkt in den Einsatzplan?
+	void deleteVeranstaltung(int id);
+	void hinzufuegenVeranstaltung(); //Zu Liste mit Veranstaltungen oder direkt in den Einsatzplan?
 
 
 	void deleteVeranstalter(int id);
-	bool hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, bool admin);
+	void hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, bool admin);
 	std::vector < std::vector<std::string>> getVeranstalter();
 
-	bool deleteStudent(int id);
-	bool hinzufuegenStudent(std::string email, std::string name, std::string pw);
+	void deleteStudent(int id);
+	void hinzufuegenStudent(std::string email, std::string name, std::string pw);
 	std::vector < std::vector<std::string>> getStudenten();
 
 };
