@@ -6,6 +6,8 @@
 # include <QHBoxLayout>
 # include <QMainWindow>
 # include <QApplication>
+# include <QMessageBox>
+# include <QInputDialog>
 # include "../PlanGrid/PlanGrid.hpp"
 
 
@@ -27,7 +29,7 @@ protected:
 public:
     EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
 
-private: slots
+private slots:
 
     void abmelden();
     void deleteVeranstaltung();

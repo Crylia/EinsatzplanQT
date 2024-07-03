@@ -196,11 +196,15 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 }
 
 void EinsatzplanFrame::abmelden(){
-	((QApplication*)(parent()->parent()))->exit();
+	static_cast<QApplication*>(parent()->parent())->exit();
 }
 
 void EinsatzplanFrame::deleteVeranstaltung(){
-
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("Veranstaltung Entfernen"),
+                                         tr("Bitte geben sie die Veranstaltung ein:"), QLineEdit::Normal,
+                                         "", &ok);
+	
 }
 
 void EinsatzplanFrame::createVeranstaltung(){
