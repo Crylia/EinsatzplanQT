@@ -421,6 +421,21 @@ CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o: Einsa
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
   ../src/View/PlanGrid/PlanGrid.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
@@ -429,6 +444,7 @@ CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/mocs_compilation.cpp.o: Einsa
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+  ../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp \
   EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp \
   ../src/View/EinsatzplanWindow/EinsatzplanWindow.hpp \
   EinsatzplanQT_autogen/62475FYGHL/moc_PlanGrid.cpp
@@ -855,6 +871,21 @@ CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o: .
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
   ../src/View/PlanGrid/PlanGrid.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
@@ -862,7 +893,8 @@ CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o: .
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+  ../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp
 
 CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o: ../src/View/EinsatzplanWindow/EinsatzplanWindow.cpp \
   /usr/include/stdc-predef.h \
@@ -1281,6 +1313,21 @@ CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o:
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
   ../src/View/PlanGrid/PlanGrid.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
@@ -1288,7 +1335,8 @@ CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o:
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+  ../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp
 
 CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o: ../src/View/PlanGrid/PlanGrid.cpp \
   /usr/include/stdc-predef.h \
@@ -2099,6 +2147,21 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
   ../src/View/PlanGrid/PlanGrid.hpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGridLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
@@ -2106,7 +2169,8 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QDateTime \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+  ../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp
 
 
 ../src/View/PlanGrid/PlanGrid.cpp:
@@ -2127,6 +2191,22 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextformat.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextcursor.h:
@@ -2144,6 +2224,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qinputmethod.h:
+
+../src/Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication.h:
 
@@ -2317,6 +2399,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/stdio.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h:
+
 /usr/include/c++/11/cstdio:
 
 /usr/include/c++/11/ext/string_conversions.h:
@@ -2391,6 +2475,8 @@ EinsatzplanQT_autogen/2XIRNZAGIE/moc_EinsatzplanWindow.cpp:
 
 /usr/include/strings.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h:
 
 /usr/include/c++/11/bits/refwrap.h:
@@ -2422,6 +2508,8 @@ EinsatzplanQT_autogen/mocs_compilation.cpp:
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydataops.h:
 
@@ -2725,6 +2813,8 @@ EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp:
 
 /usr/include/c++/11/tr1/bessel_function.tcc:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QFrame:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs_impl.h:
@@ -2732,6 +2822,8 @@ EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp:
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h:
 
@@ -2873,6 +2965,8 @@ EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h:
+
 /usr/include/c++/11/bits/stl_list.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
@@ -2884,6 +2978,8 @@ EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/c++/11/tr1/gamma.tcc:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h:
 
 /usr/include/c++/11/array:
 

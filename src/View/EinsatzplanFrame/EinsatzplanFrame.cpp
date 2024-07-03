@@ -11,6 +11,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
     }
     )");
 
+	controller_m = new EinsatzplanFrameController(id, admin);
 
 	profileImg_m = new QLabel(this);
 	profileImg_m->setFixedSize(60, 60);
@@ -211,7 +212,15 @@ void EinsatzplanFrame::deleteVeranstaltung(){
 }
 
 void EinsatzplanFrame::createVeranstaltung(){
-
+	createVerDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        QString name = dialog.getName();
+        QString raum = dialog.getRaum();
+        QString campus = dialog.getCampus();
+        QString begin = dialog.getBegin();
+        QString ende = dialog.getEnde();
+		controller_m->createVeranstaltung(name,raum, campus, begin, ende);
+	}
 }
 
 void EinsatzplanFrame::deleteMember(){
@@ -226,5 +235,146 @@ void EinsatzplanFrame::deleteMember(){
 }
 
 void EinsatzplanFrame::createMember(){
+	createMemDialog dialog(this);
+	if (dialog.exec() == QDialog::Accepted) {
+        QString name = dialog.getName();
+        QString email = dialog.getEmail();
+        QString password = dialog.getPassword();
+        bool isAdmin = dialog.isAdmin();
+		controller_m->createMember(name, email, password, isAdmin);
+	}
+}
 
+
+
+createMemDialog::createMemDialog(QWidget* parent)
+		:QDialog(parent)
+		{
+			setWindowTitle("Mitarbeiter Hinzufügen");
+			setFixedSize(300,400);
+
+			name_m = new QLineEdit(this);
+			name_m->setPlaceholderText("Name");
+			name_m->show();
+			
+
+			email_m = new QLineEdit(this);
+			email_m->setPlaceholderText("Email");
+			email_m->show();
+
+			password_m = new QLineEdit(this);
+			password_m->setPlaceholderText("Passwort");
+			password_m->setEchoMode(QLineEdit::Password);
+			password_m->show();
+
+			admin_m = new QCheckBox("Admin?", this);
+			admin_m->show();
+			
+
+			QVBoxLayout* layout = new QVBoxLayout(this);
+
+			layout->addWidget(name_m);
+			layout->addWidget(email_m);
+			layout->addWidget(password_m);
+			layout->addWidget(admin_m);
+
+			QHBoxLayout* buttonLayout = new QHBoxLayout();
+			
+			okButton = new QPushButton("OK", this);
+    		cancelButton = new QPushButton("Abbrechen", this);
+
+			buttonLayout->addWidget(okButton);
+			buttonLayout->addWidget(cancelButton);
+
+			layout->addLayout(buttonLayout);
+
+			connect(okButton, &QPushButton::clicked, this, &QDialog::accept);
+			connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
+		}
+
+QString	createMemDialog::getName() const {
+    return name_m->text();
+}
+
+QString createMemDialog::getEmail() const {
+    return email_m->text();
+}
+
+QString createMemDialog::getPassword() const {
+    return password_m->text();
+}
+
+bool createMemDialog::isAdmin() const {
+    return admin_m->isChecked();
+}
+
+
+
+createVerDialog::createVerDialog(QWidget* parent)
+    : QDialog(parent) {
+    setWindowTitle("Veranstaltung Hinzufügen");
+
+    QVBoxLayout* layout = new QVBoxLayout(this);
+
+    name_m = new QLineEdit(this);
+    name_m->setPlaceholderText("Veranstaltungskürzel");
+    layout->addWidget(name_m);
+
+    raum_m = new QLineEdit(this);
+    raum_m->setPlaceholderText("Raum");
+    layout->addWidget(raum_m);
+
+    campus_m = new QComboBox(this);
+    campus_m->addItem("Campus A");
+    campus_m->addItem("Campus B");
+    layout->addWidget(campus_m);
+
+    begin_m = new QComboBox(this);
+    begin_m->addItem("08:00");
+    begin_m->addItem("10:00");
+    begin_m->addItem("12:00");
+    begin_m->addItem("14:00");
+    begin_m->addItem("16:00");
+    layout->addWidget(begin_m);
+
+    ende_m = new QComboBox(this);
+    ende_m->addItem("10:00");
+    ende_m->addItem("12:00");
+    ende_m->addItem("14:00");
+    ende_m->addItem("16:00");
+    ende_m->addItem("18:00");
+    layout->addWidget(ende_m);
+
+    QHBoxLayout* buttonLayout = new QHBoxLayout();
+
+    okButton = new QPushButton("OK", this);
+    cancelButton = new QPushButton("Abbrechen", this);
+
+    buttonLayout->addWidget(okButton);
+    buttonLayout->addWidget(cancelButton);
+
+    layout->addLayout(buttonLayout);
+
+    connect(okButton, &QPushButton::clicked, this, &QDialog::accept);
+    connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
+}
+
+QString createVerDialog::getName() const {
+    return name_m->text();
+}
+
+QString createVerDialog::getRaum() const {
+    return raum_m->text();
+}
+
+QString createVerDialog::getCampus() const {
+    return campus_m->currentText();
+}
+
+QString createVerDialog::getBegin() const {
+    return begin_m->currentText();
+}
+
+QString createVerDialog::getEnde() const {
+    return ende_m->currentText();
 }
