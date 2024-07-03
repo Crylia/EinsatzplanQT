@@ -19,7 +19,7 @@ CREATE TABLE Studenten (
 
 CREATE TABLE krank (
             veranstalter_ID INTEGER,
-            FOREIGN KEY (veranstalter_ID) REFERENCES veranstalterrrr(ID) ON DELETE CASCADE);
+            FOREIGN KEY (veranstalter_ID) REFERENCES veranstalter(ID) ON DELETE CASCADE);
 
 
             
