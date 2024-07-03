@@ -17,11 +17,11 @@ public:
 
 	void deleteVeranstalter(int id);
 	void hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, bool admin);
-	std::vector < std::vector<std::string>> getVeranstalter();
+	std::vector<std::string> getVeranstalter();
 
 	void deleteStudent(int id);
 	void hinzufuegenStudent(std::string email, std::string name, std::string pw);
-	std::vector < std::vector<std::string>> getStudenten();
+	std::vector<std::string> getStudenten();
 
 };
 
