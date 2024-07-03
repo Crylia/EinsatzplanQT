@@ -202,9 +202,12 @@ void EinsatzplanFrame::abmelden(){
 void EinsatzplanFrame::deleteVeranstaltung(){
 	bool ok;
 	QString text = QInputDialog::getText(this, tr("Veranstaltung Entfernen"),
-                                         tr("Bitte geben sie die Veranstaltung ein:"), QLineEdit::Normal,
+                                         tr("Bitte geben sie den Veranstaltungskürzel ein:"), QLineEdit::Normal,
                                          "", &ok);
-	
+	if (ok && text.size()!= 3)
+		QMessageBox::information(this, "Veranstaltung Entfernen", "Veranstaltungskürzel besteht aus 3 Zeichen!");
+	if (ok && text.size() == 3)
+		QMessageBox::information(this, "Veranstaltung entfernen", "Veranstaltung wird entfernt!");
 }
 
 void EinsatzplanFrame::createVeranstaltung(){
@@ -212,7 +215,14 @@ void EinsatzplanFrame::createVeranstaltung(){
 }
 
 void EinsatzplanFrame::deleteMember(){
-
+	bool ok;
+	QString text = QInputDialog::getText(this, tr("Mitarbeiter Entfernen"),
+                                         tr("Bitte geben sie die Mitarbeiter ID ein:"), QLineEdit::Normal,
+                                         "", &ok);
+	if (ok && text.size()!= 7)
+		QMessageBox::information(this, "Mitarbeiter Entfernen", "Mitarbeiter ID besteht aus 7 Zahlen!");
+	if (ok && text.size() == 7)
+		QMessageBox::information(this, "Mitarbeiter entfernen", "Mitarbeiter wird entfernt!");
 }
 
 void EinsatzplanFrame::createMember(){
