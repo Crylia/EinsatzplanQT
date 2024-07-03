@@ -448,6 +448,10 @@ createVerDialog::createVerDialog(QWidget* parent)
 			border-radius: 10px;
 			padding: 5px;
 		}
+		#campus::Item{
+			color: #DADADA;
+			background-color: #313131;
+		}
 		)");
     layout->addWidget(campus_m,1,Qt::AlignCenter);
 
@@ -467,6 +471,10 @@ createVerDialog::createVerDialog(QWidget* parent)
 			border-radius: 10px;
 			padding: 5px;
 		}
+		#begin::Item{
+			color: #DADADA;
+			background-color: #313131;
+		}
 		)");
     layout->addWidget(begin_m,1,Qt::AlignCenter);
 
@@ -485,6 +493,10 @@ createVerDialog::createVerDialog(QWidget* parent)
 			background-color: #313131;
 			border-radius: 10px;
 			padding: 5px;
+		}
+		#ende::Item{
+			color: #DADADA;
+			background-color: #313131;
 		}
 		)");
     layout->addWidget(ende_m,1,Qt::AlignCenter);
