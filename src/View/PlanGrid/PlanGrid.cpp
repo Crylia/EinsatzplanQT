@@ -35,7 +35,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 
 	for (int i = 0; i < 5; ++i) {
 		for (int j = 0; j < 10; ++j) {
-			QLabel* temp = new QLabel( );
+			QLabel* temp = new QLabel();
 			temp->setObjectName("temp");
 			temp->setStyleSheet(R"(
 			#temp{
@@ -129,3 +129,4 @@ void PlanGrid::populateGrid( ) {
 		}
 	}
 }
+
