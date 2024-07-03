@@ -85,3 +85,14 @@ public:
     QString getPassword() const;
     bool isAdmin() const;
 };
+
+class deleteVerDialog : QDialog{
+    Q_OBJECT
+protected:
+    QLineEdit* veranstaltung_m;
+    QPushButton* okButton_m;
+    QPushButton* cancleButton_m;
+
+public:
+    QString getVeranstaltung();
+};

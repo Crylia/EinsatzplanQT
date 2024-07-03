@@ -4,6 +4,7 @@
 # include <QLabel>
 # include <QDateTime>
 # include "../../Controller/PlanGridController/PlanGridController.hpp"
+# include "../Widgets/GridItem.hpp"
 
 class PlanGrid : public QWidget {
     Q_OBJECT

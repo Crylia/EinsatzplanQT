@@ -160,10 +160,24 @@ CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.s
 
+CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
+CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o: ../src/View/Widgets/GridItem.cpp
+CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/Widgets/GridItem.cpp"
+
+CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/Widgets/GridItem.cpp" > CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.i
+
+CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/Widgets/GridItem.cpp" -o CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.s
+
 CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
 CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/main.cpp"
 
 CMakeFiles/EinsatzplanQT.dir/src/main.cpp.i: cmake_force
@@ -177,7 +191,7 @@ CMakeFiles/EinsatzplanQT.dir/src/main.cpp.s: cmake_force
 CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o: CMakeFiles/EinsatzplanQT.dir/flags.make
 CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o: EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp
 CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o: CMakeFiles/EinsatzplanQT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o -MF CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o.d -o CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o -c "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp"
 
 CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.i: cmake_force
@@ -196,6 +210,7 @@ EinsatzplanQT_OBJECTS = \
 "CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o" \
 "CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o" \
 "CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o" \
+"CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o" \
 "CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o" \
 "CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o"
 
@@ -208,6 +223,7 @@ EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/Controller/PlanGridController/Pl
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanFrame/EinsatzplanFrame.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/EinsatzplanWindow/EinsatzplanWindow.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/PlanGrid/PlanGrid.cpp.o
+EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/View/Widgets/GridItem.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/src/main.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/EinsatzplanQT_autogen/GBFAFXFCVO/qrc_resources.cpp.o
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/build.make
@@ -219,7 +235,7 @@ EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libGLX.so
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 EinsatzplanQT: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
 EinsatzplanQT: CMakeFiles/EinsatzplanQT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable EinsatzplanQT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable EinsatzplanQT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EinsatzplanQT.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -446,6 +446,12 @@
 			"MU",
 			"62475FYGHL/moc_PlanGrid.cpp",
 			null
+		],
+		[
+			"/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/Widgets/GridItem.hpp",
+			"MU",
+			"4WQTOQC2PM/moc_GridItem.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -530,6 +536,11 @@
 		],
 		[
 			"/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/PlanGrid/PlanGrid.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/src/View/Widgets/GridItem.cpp",
 			"MU",
 			null
 		],
