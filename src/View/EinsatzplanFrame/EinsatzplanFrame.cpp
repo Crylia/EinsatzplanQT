@@ -252,44 +252,121 @@ createMemDialog::createMemDialog(QWidget* parent)
 		{
 			setWindowTitle("Mitarbeiter Hinzufügen");
 			setFixedSize(300,400);
+			setObjectName("createMemDialog");
+			setStyleSheet(R"(
+			#createMemDialog{
+				background-color: #212121;
+				border: none;
+			}
+			)");
 
 			name_m = new QLineEdit(this);
 			name_m->setPlaceholderText("Name");
+			name_m->setFixedSize(220,40);
+			name_m->setObjectName("name");
+			name_m->setStyleSheet(R"(
+			#name{
+				color: #DADADA;
+				font-size: 16px;
+				background-color: #313131;
+				border-radius: 10px;
+				padding: 5px;
+				border: 2px solid #414141;
+			}
+			)");
 			name_m->show();
 			
 
 			email_m = new QLineEdit(this);
 			email_m->setPlaceholderText("Email");
+			email_m->setFixedSize(220,40);
+			email_m->setObjectName("email");
+			email_m->setStyleSheet(R"(
+			#email{
+				color: #DADADA;
+				font-size: 16px;
+				background-color: #313131;
+				border-radius: 10px;
+				padding: 5px;
+				border: 2px solid #414141;
+			}
+			)");
 			email_m->show();
 
 			password_m = new QLineEdit(this);
 			password_m->setPlaceholderText("Passwort");
 			password_m->setEchoMode(QLineEdit::Password);
+			password_m->setFixedSize(220,40);
+			password_m->setObjectName("password");
+			password_m->setStyleSheet(R"(
+			#password{
+				color: #DADADA;
+				font-size: 16px;
+				background-color: #313131;
+				border-radius: 10px;
+				padding: 5px;
+				border: 2px solid #414141;
+			}
+			)");
 			password_m->show();
 
-			admin_m = new QCheckBox("Admin?", this);
+			admin_m = new QCheckBox("Admin", this);
+			admin_m->setFixedSize(220,40);
+			admin_m->setObjectName("admin");
+			admin_m->setStyleSheet(R"(
+			#admin{
+				color: #DADADA;
+				font-size: 20px;
+				border: none;
+			}
+			)");
 			admin_m->show();
 			
 
 			QVBoxLayout* layout = new QVBoxLayout(this);
 
-			layout->addWidget(name_m);
-			layout->addWidget(email_m);
-			layout->addWidget(password_m);
-			layout->addWidget(admin_m);
+			layout->setContentsMargins(30,30,30,30);
+
+			layout->addWidget(name_m,1,Qt::AlignCenter);
+			layout->addWidget(email_m,1,Qt::AlignCenter);
+			layout->addWidget(password_m,1,Qt::AlignCenter);
+			layout->addWidget(admin_m,1, Qt::AlignCenter);
 
 			QHBoxLayout* buttonLayout = new QHBoxLayout();
 			
-			okButton = new QPushButton("OK", this);
-    		cancelButton = new QPushButton("Abbrechen", this);
+			okButton_m = new QPushButton("OK", this);
+			okButton_m->setFixedSize(110,40);
+			okButton_m->setObjectName("okButton");
+			okButton_m->setStyleSheet(R"(
+			#okButton{
+				color: #212121;
+				font-size: 16px;
+				font-weight: bold;
+				background-color: #53EC87;
+				border-radius: 10px;
+			}
+			)");
 
-			buttonLayout->addWidget(okButton);
-			buttonLayout->addWidget(cancelButton);
+    		cancelButton_m = new QPushButton("Abbrechen", this);
+			cancelButton_m->setFixedSize(110,40);
+			cancelButton_m->setObjectName("cancelButton");
+			cancelButton_m->setStyleSheet(R"(
+			#cancelButton{
+				color: #212121;
+				font-size: 16px;
+				font-weight: bold;
+				background-color: #FF5555;
+				border-radius: 10px;
+			}
+			)");
+
+			buttonLayout->addWidget(okButton_m,1, Qt::AlignCenter);
+			buttonLayout->addWidget(cancelButton_m,1,Qt::AlignCenter);
 
 			layout->addLayout(buttonLayout);
 
-			connect(okButton, &QPushButton::clicked, this, &QDialog::accept);
-			connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
+			connect(okButton_m, &QPushButton::clicked, this, &QDialog::accept);
+			connect(cancelButton_m, &QPushButton::clicked, this, &QDialog::reject);
 		}
 
 QString	createMemDialog::getName() const {
@@ -313,21 +390,66 @@ bool createMemDialog::isAdmin() const {
 createVerDialog::createVerDialog(QWidget* parent)
     : QDialog(parent) {
     setWindowTitle("Veranstaltung Hinzufügen");
+	setFixedSize(300,440);
+			setObjectName("createMemDialog");
+			setStyleSheet(R"(
+			#createMemDialog{
+				background-color: #212121;
+				border: none;
+			}
+			)");
 
     QVBoxLayout* layout = new QVBoxLayout(this);
 
+	layout->setContentsMargins(30,30,30,30);
+
     name_m = new QLineEdit(this);
     name_m->setPlaceholderText("Veranstaltungskürzel");
-    layout->addWidget(name_m);
+	name_m->setFixedSize(220,40);
+	name_m->setObjectName("name");
+	name_m->setStyleSheet(R"(
+		#name{
+			color: #DADADA;
+			font-size: 16px;
+			background-color: #313131;
+			border-radius: 10px;
+			padding: 5px;
+			border: 2px solid #414141;
+		}
+		)");
+    layout->addWidget(name_m,1,Qt::AlignCenter);
 
     raum_m = new QLineEdit(this);
     raum_m->setPlaceholderText("Raum");
-    layout->addWidget(raum_m);
+	raum_m->setFixedSize(220,40);
+	raum_m->setObjectName("raum");
+	raum_m->setStyleSheet(R"(
+		#raum{
+			color: #DADADA;
+			font-size: 16px;
+			background-color: #313131;
+			border-radius: 10px;
+			padding: 5px;
+			border: 2px solid #414141;
+		}
+		)");
+    layout->addWidget(raum_m,1,Qt::AlignCenter);
 
     campus_m = new QComboBox(this);
     campus_m->addItem("Campus A");
     campus_m->addItem("Campus B");
-    layout->addWidget(campus_m);
+	campus_m->setFixedSize(220,40);
+	campus_m->setObjectName("campus");
+	campus_m->setStyleSheet(R"(
+		#campus{
+			color: #DADADA;
+			font-size: 16px;
+			background-color: #313131;
+			border-radius: 10px;
+			padding: 5px;
+		}
+		)");
+    layout->addWidget(campus_m,1,Qt::AlignCenter);
 
     begin_m = new QComboBox(this);
     begin_m->addItem("08:00");
@@ -335,7 +457,18 @@ createVerDialog::createVerDialog(QWidget* parent)
     begin_m->addItem("12:00");
     begin_m->addItem("14:00");
     begin_m->addItem("16:00");
-    layout->addWidget(begin_m);
+	begin_m->setFixedSize(220,40);
+	begin_m->setObjectName("begin");
+	begin_m->setStyleSheet(R"(
+		#begin{
+			color: #DADADA;
+			font-size: 16px;
+			background-color: #313131;
+			border-radius: 10px;
+			padding: 5px;
+		}
+		)");
+    layout->addWidget(begin_m,1,Qt::AlignCenter);
 
     ende_m = new QComboBox(this);
     ende_m->addItem("10:00");
@@ -343,20 +476,54 @@ createVerDialog::createVerDialog(QWidget* parent)
     ende_m->addItem("14:00");
     ende_m->addItem("16:00");
     ende_m->addItem("18:00");
-    layout->addWidget(ende_m);
+	ende_m->setFixedSize(220,40);
+	ende_m->setObjectName("ende");
+	ende_m->setStyleSheet(R"(
+		#ende{
+			color: #DADADA;
+			font-size: 16px;
+			background-color: #313131;
+			border-radius: 10px;
+			padding: 5px;
+		}
+		)");
+    layout->addWidget(ende_m,1,Qt::AlignCenter);
 
     QHBoxLayout* buttonLayout = new QHBoxLayout();
 
-    okButton = new QPushButton("OK", this);
-    cancelButton = new QPushButton("Abbrechen", this);
+    okButton_m = new QPushButton("OK", this);
+	okButton_m->setFixedSize(110,40);
+			okButton_m->setObjectName("okButton");
+			okButton_m->setStyleSheet(R"(
+			#okButton{
+				color: #212121;
+				font-size: 16px;
+				font-weight: bold;
+				background-color: #53EC87;
+				border-radius: 10px;
+			}
+			)");
 
-    buttonLayout->addWidget(okButton);
-    buttonLayout->addWidget(cancelButton);
+    cancelButton_m = new QPushButton("Abbrechen", this);
+	cancelButton_m->setFixedSize(110,40);
+			cancelButton_m->setObjectName("cancelButton");
+			cancelButton_m->setStyleSheet(R"(
+			#cancelButton{
+				color: #212121;
+				font-size: 16px;
+				font-weight: bold;
+				background-color: #FF5555;
+				border-radius: 10px;
+			}
+			)");
 
-    layout->addLayout(buttonLayout);
+    buttonLayout->addWidget(okButton_m,1,Qt::AlignCenter);
+    buttonLayout->addWidget(cancelButton_m,1,Qt::AlignCenter);
 
-    connect(okButton, &QPushButton::clicked, this, &QDialog::accept);
-    connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
+    layout->addLayout(buttonLayout,1);
+
+    connect(okButton_m, &QPushButton::clicked, this, &QDialog::accept);
+    connect(cancelButton_m, &QPushButton::clicked, this, &QDialog::reject);
 }
 
 QString createVerDialog::getName() const {

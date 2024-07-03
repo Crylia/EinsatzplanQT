@@ -52,8 +52,8 @@ class createVerDialog : public QDialog{
         QComboBox* campus_m;
 		QComboBox* begin_m;
 		QComboBox* ende_m;
-        QPushButton* okButton;
-        QPushButton* cancelButton;
+        QPushButton* okButton_m;
+        QPushButton* cancelButton_m;
 
 public:
 
@@ -73,8 +73,8 @@ class createMemDialog : public QDialog{
 		QLineEdit* email_m;
 		QLineEdit* password_m;
 		QCheckBox* admin_m;
-        QPushButton* okButton;
-        QPushButton* cancelButton;
+        QPushButton* okButton_m;
+        QPushButton* cancelButton_m;
 
 public:
 
