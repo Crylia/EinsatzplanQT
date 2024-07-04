@@ -4,15 +4,87 @@ DBPlan::DBPlan(std::string connStr) : DBHandler(connStr) {
 };
 
 
-void DBPlan::meldeKrank(std::string id, std::string zeit) {
+void DBPlan::vertretung(std::string tag, std::string stunde, std::string dauer) {
+    try {
+        std::string prevStunde = std::to_string(std::stoi(stunde) - 1);
+        std::string cap = std::to_string(18 - std::stoi(dauer));
+        std::string nextStunde;
+        std::string nextTag = tag;
+        std::string prevTag = tag;
+        if (dauer == "4") {
+           
+           nextStunde = std::to_string(std::stoi(stunde) + 2);
+           std::cout << nextStunde << std::endl;
+        }
+        else {
+           nextStunde = std::to_string(std::stoi(stunde) + 1);
+           std::cout << nextStunde << std::endl;
+        }
+
+        if (prevStunde == "0") {
+            prevStunde = "5";
+            prevTag = std::to_string(std::stoi(tag) - 1);
+            if (prevTag == "0") {
+                prevTag = "5";
+            }
+        }
+
+        if (nextStunde == "6") {
+            nextStunde = "1";
+            nextTag = std::to_string(std::stoi(tag)+1);
+            if (nextTag == "6") {
+                nextTag = "1";
+            }
+        }
+
+        pqxx::work worker(connectionObject);
+
+        
+        std::string query =
+            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = "
+            "(SELECT ID FROM Veranstalter WHERE ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2) "
+            "AND ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $3 AND tag = $4) LIMIT 1) WHERE uhrzeit_id = $5 AND tag = $6; ";
+       
+
+        pqxx::result response = worker.exec_params(query, prevStunde, prevTag, nextStunde, nextTag, stunde, tag);
+       
+        worker.commit();
+        
+
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+
+    }
+}
+
+void DBPlan::sucheVertretung(std::string tag, std::string stunde) {
+    std::string dauer = getDauer(tag, stunde);
+    vertretung(tag, stunde, dauer);
+    incarbeitszeit(tag, stunde, dauer);
+
+    if (dauer == "4") {
+        upperHour(tag, stunde);
+    }
+
+ 
+
+}
+
+void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
 
     try {
+        
         pqxx::work worker(connectionObject);
         std::string query =
-            "INSERT INTO krank (veranstalter_ID) VALUES($1);";
+            "UPDATE Veranstalter SET krank = TRUE WHERE ID = $1";
 
         pqxx::result response = worker.exec_params(query, id);
         worker.commit();
+        
+        sucheVertretung(tag, stunde);
+        meldeGesund(id);
+
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -25,7 +97,7 @@ void DBPlan::meldeGesund(std::string id) {
     try {
         pqxx::work worker(connectionObject);
         std::string query =
-            "DELETE FROM krank WHERE veranstalter_ID = $1 ;";
+            "UPDATE Veranstalter SET krank = FALSE WHERE ID = $1";
 
         pqxx::result response = worker.exec_params(query, id);
         worker.commit();
@@ -138,11 +210,12 @@ void DBPlan::hinzufuegenStudent(std::string email, std::string name, std::string
 
 std::string DBPlan::getDauer(std::string tag, std::string stunde) {
     try {
-       
         pqxx::work worker(connectionObject);
         std::string query =
             "SELECT dauer FROM Veranstaltung WHERE ID = (SELECT Veranstaltung_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2);";
+       
         pqxx::result response = worker.exec_params(query, stunde, tag);
+        
         worker.commit();
         
         
@@ -166,7 +239,7 @@ void DBPlan::addFirstOfDayTwo(std::string tag) {
     try {
         pqxx::work worker(connectionObject);
         std::string query =
-            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = (SELECT ID FROM Veranstalter WHERE arbeitszeit <= 16 LIMIT 1) "
+            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = (SELECT ID FROM Veranstalter WHERE arbeitszeit <= 16 AND krank = FALSE LIMIT 1) "
             "WHERE uhrzeit_id = 1 AND tag = $1;";
         pqxx::result response = worker.exec_params(query, tag);
         worker.commit();
@@ -186,7 +259,7 @@ void DBPlan::addTwoHour(std::string tag, std::string stunde) {
         pqxx::work worker(connectionObject);
         std::string query =
             "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_id = (SELECT ID FROM Veranstalter "
-               "WHERE arbeitszeit <= 16 "
+               "WHERE arbeitszeit <= 16 AND krank = FALSE "
                "AND(standort = (SELECT ort FROM Veranstaltung WHERE ID = (SELECT veranstaltung_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2)) "
                    "AND ID != (SELECT veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2)) "
               "ORDER BY random() LIMIT 1) "
@@ -204,7 +277,7 @@ void DBPlan::addFirstOfDayFour(std::string tag) {
     try {
         pqxx::work worker(connectionObject);
         std::string query =
-            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = (SELECT ID FROM Veranstalter WHERE arbeitszeit <= 14 LIMIT 1) "
+            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = (SELECT ID FROM Veranstalter WHERE arbeitszeit <= 14 AND krank = FALSE LIMIT 1) "
             "WHERE uhrzeit_id = 1 AND tag = $1;";
         pqxx::result response = worker.exec_params(query, tag);
         worker.commit();
@@ -222,7 +295,7 @@ void DBPlan::addFourHour(std::string tag, std::string stunde) {
         pqxx::work worker(connectionObject);
         std::string query =
            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_id = (SELECT ID FROM Veranstalter "
-                "WHERE arbeitszeit <= 14 "
+                "WHERE arbeitszeit <= 14 AND krank = FALSE "
                 "AND(standort = (SELECT ort FROM Veranstaltung WHERE ID = (SELECT veranstaltung_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2)) "
                     "AND ID != (SELECT veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2)) "
                 "ORDER BY random() LIMIT 1) "
@@ -241,7 +314,6 @@ void DBPlan::upperHour(std::string tag, std::string stunde) {
         
         std::string nextStunde = std::to_string(std::stoi(stunde) + 1);
 
-        std::cout << "tag: " << tag  << " stunde: " << stunde << " prevStunde " << nextStunde << std::endl;
         pqxx::work worker(connectionObject);
         std::string query =
             "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2)"
@@ -334,5 +406,6 @@ void DBPlan::createPlan() {
     }
 
 }
+
 
 
