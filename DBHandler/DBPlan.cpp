@@ -1,3 +1,9 @@
+/* TO DO 
+deleteVeranstalter() und deleteVeranstaltung() Foreignkey Constraint fixen
+Funktion getEinsatzplan() erstellen
+*/
+
+
 #include "DBPlan.hpp"
 
 DBPlan::DBPlan(std::string connStr) : DBHandler(connStr) {
