@@ -7,21 +7,36 @@
 #include <vector>
 
 class DBPlan : public DBHandler {
+private:
+	std::string getDauer(std::string tag, std::string stunde);
+	void addFirstOfDayTwo(std::string tag);
+	void addTwoHour(std::string tag, std::string stunde);
+	void addFirstOfDayFour(std::string tag);
+	void upperHour(std::string tag, std::string stunde);
+	void addFourHour(std::string tag, std::string stunde);
+
+	void updateStandort(std::string tag, std::string stunde);
 public:
 	DBPlan(std::string connStr);
-	void meldeKrank(int id);
-	void meldeGesund(int id);
-	void deleteVeranstaltung(int id);
-	void hinzufuegenVeranstaltung(); //Zu Liste mit Veranstaltungen oder direkt in den Einsatzplan?
+	void meldeKrank(std::string id, std::string zeit);
+	void meldeGesund(std::string id);
+	void deleteVeranstaltung(std::string id);
+	void hinzufuegenVeranstaltung(std::string name, std::string dauer, std::string ort, std::string raum);
 
 
-	void deleteVeranstalter(int id);
-	void hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, bool admin);
-	std::vector<std::string> getVeranstalter();
+	void deleteVeranstalter(std::string id);
+	void hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, std::string admin);
+	
 
-	void deleteStudent(int id);
+	void deleteStudent(std::string id);
 	void hinzufuegenStudent(std::string email, std::string name, std::string pw);
-	std::vector<std::string> getStudenten();
+	
+
+	void createPlan();
+	void incarbeitszeit(std::string tag, std::string stunde, std::string amount);
+
+
+	void clear();
 
 };
 
