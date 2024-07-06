@@ -449,7 +449,7 @@ std::vector<std::string> DBPlan::getPlan() {
         pqxx::work worker(connectionObject);
 
         std::string query =
-            "SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit LEFT JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID "
+            "SELECT tag, u.anfangszeit, o.ort, o.name, v.name, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit LEFT JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID "
             "LEFT JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID "
             "LEFT JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID "
             "ORDER BY tag, uhrzeit_ID;";
