@@ -1,12 +1,3 @@
-/* TO DO 
-deleteVeranstalter() und deleteVeranstaltung() Foreignkey Constraint fixen
-Funktion getEinsatzplan() erstellen : psql prompt: SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name FROM Veranstalter_Veranstaltung_Uhrzeit LEFT JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID
-                                                                                        LEFT JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID 
-                                                                                        LEFT JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID 
-                                                                                        ORDER BY tag, uhrzeit_ID;
-*/
-
-
 #include "DBPlan.hpp"
 
 DBPlan::DBPlan(std::string connStr) : DBHandler(connStr) {
@@ -119,8 +110,24 @@ void DBPlan::meldeGesund(std::string id) {
 
 
 
+void DBPlan::deleteVeranstalterForeign(std::string id) {
+    try {
+        pqxx::work worker(connectionObject);
+        std::string query =
+            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = NULL WHERE Veranstalter_ID = $1;";
+
+        pqxx::result response = worker.exec_params(query, id);
+        worker.commit();
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
 
 void DBPlan::deleteVeranstalter(std::string id) {
+
+    deleteVeranstalterForeign(id);
+    
     try {
         pqxx::work worker(connectionObject);
         std::string query =
@@ -135,17 +142,30 @@ void DBPlan::deleteVeranstalter(std::string id) {
 }
 
 
-
-
-void DBPlan::deleteVeranstaltung(std::string id) {
+void DBPlan::deleteVeranstaltungForeign(std::string id) {
     try {
         pqxx::work worker(connectionObject);
         std::string query =
-            "DELETE FROM Veranstaltung WHERE ID = $1;";
+            "UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstaltung_ID = NULL WHERE Veranstalter_ID = $1;";
 
         pqxx::result response = worker.exec_params(query, id);
         worker.commit();
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
 
+void DBPlan::deleteVeranstaltung(std::string id) {
+    deleteVeranstaltungForeign(id);
+
+    try {
+        pqxx::work worker(connectionObject);
+        std::string query =
+            "DELETE FROM Veranstaltung WHERE ID = $1";
+
+        pqxx::result response = worker.exec_params(query, id);
+        worker.commit();
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -414,6 +434,43 @@ void DBPlan::createPlan() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
+}
+
+
+
+std::vector<std::string> DBPlan::getPlan() {
+    try {
+
+        std::vector<std::string> plan;
+
+        pqxx::work worker(connectionObject);
+
+        std::string query =
+            "SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit LEFT JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID "
+            "LEFT JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID "
+            "LEFT JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID "
+            "ORDER BY tag, uhrzeit_ID;";
+
+        pqxx::result response = worker.exec(query);
+        worker.commit();
+
+        for (const auto& row : response) {
+            std::string rowstring;
+            for (const auto& col : row) {
+                rowstring.append(col.c_str());
+                rowstring.append(" , ");
+            }
+            plan.push_back(rowstring);
+            
+        }
+
+        return plan;
+       
+
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
 }
 
 
