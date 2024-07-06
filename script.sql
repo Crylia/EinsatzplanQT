@@ -1,6 +1,5 @@
 
 DROP VIEW studenten_veranstalter;
-
 DROP TABLE Veranstalter_Veranstaltung_Uhrzeit;
 DROP TABLE Studenten;
 DROP TABLE Veranstalter;
