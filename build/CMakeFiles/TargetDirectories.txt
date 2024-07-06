@@ -1,0 +1,4 @@
+/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/EinsatzplanQT.dir
+/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/edit_cache.dir
+/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/rebuild_cache.dir
+/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/EinsatzplanQT_autogen.dir
