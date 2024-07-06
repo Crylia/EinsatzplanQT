@@ -10,7 +10,7 @@ class PlanGrid : public QWidget {
     Q_OBJECT
 private:
     QString weekdays[5];
-    QString times[10];
+    QString times[5];
     
     void populateGrid();
 protected:

@@ -50,8 +50,7 @@ class createVerDialog : public QDialog{
 		QLineEdit* name_m;
         QLineEdit* raum_m;
         QComboBox* campus_m;
-		QComboBox* begin_m;
-		QComboBox* ende_m;
+		QComboBox* time_m;
         QPushButton* okButton_m;
         QPushButton* cancelButton_m;
 
@@ -62,8 +61,7 @@ public:
     QString getName() const;
     QString getRaum() const;
     QString getCampus() const;
-    QString getBegin() const;
-    QString getEnde() const;
+    QString getTime() const;
 };
 
 class createMemDialog : public QDialog{

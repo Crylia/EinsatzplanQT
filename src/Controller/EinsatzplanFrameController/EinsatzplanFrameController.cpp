@@ -27,7 +27,7 @@ void EinsatzplanFrameController::createMember(QString name, QString email, QStri
     */
 }
 
-void EinsatzplanFrameController::createVeranstaltung(QString name, QString raum, QString campus, QString begin, QString ende){
+void EinsatzplanFrameController::createVeranstaltung(QString name, QString raum, QString campus, QString time){
     /*
     DatabaseHandler db = new DatabaseHandler();
     db.executeQuery()

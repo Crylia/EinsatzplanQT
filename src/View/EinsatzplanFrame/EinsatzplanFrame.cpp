@@ -217,9 +217,8 @@ void EinsatzplanFrame::createVeranstaltung(){
         QString name = dialog.getName();
         QString raum = dialog.getRaum();
         QString campus = dialog.getCampus();
-        QString begin = dialog.getBegin();
-        QString ende = dialog.getEnde();
-		controller_m->createVeranstaltung(name,raum, campus, begin, ende);
+        QString time = dialog.getTime();
+		controller_m->createVeranstaltung(name,raum, campus, time);
 	}
 }
 
@@ -390,7 +389,7 @@ bool createMemDialog::isAdmin() const {
 createVerDialog::createVerDialog(QWidget* parent)
     : QDialog(parent) {
     setWindowTitle("Veranstaltung Hinzufügen");
-	setFixedSize(300,440);
+	setFixedSize(300,400);
 			setObjectName("createMemDialog");
 			setStyleSheet(R"(
 			#createMemDialog{
@@ -455,51 +454,26 @@ createVerDialog::createVerDialog(QWidget* parent)
 		)");
     layout->addWidget(campus_m,1,Qt::AlignCenter);
 
-    begin_m = new QComboBox(this);
-    begin_m->addItem("08:00");
-    begin_m->addItem("10:00");
-    begin_m->addItem("12:00");
-    begin_m->addItem("14:00");
-    begin_m->addItem("16:00");
-	begin_m->setFixedSize(220,40);
-	begin_m->setObjectName("begin");
-	begin_m->setStyleSheet(R"(
-		#begin{
+    time_m = new QComboBox(this);
+    time_m->addItem("2h");
+    time_m->addItem("4h");
+	time_m->setFixedSize(220,40);
+	time_m->setObjectName("time");
+	time_m->setStyleSheet(R"(
+		#time{
 			color: #DADADA;
 			font-size: 16px;
 			background-color: #313131;
 			border-radius: 10px;
 			padding: 5px;
 		}
-		#begin::Item{
+		#time::Item{
 			color: #DADADA;
 			background-color: #313131;
 		}
 		)");
-    layout->addWidget(begin_m,1,Qt::AlignCenter);
+    layout->addWidget(time_m,1,Qt::AlignCenter);
 
-    ende_m = new QComboBox(this);
-    ende_m->addItem("10:00");
-    ende_m->addItem("12:00");
-    ende_m->addItem("14:00");
-    ende_m->addItem("16:00");
-    ende_m->addItem("18:00");
-	ende_m->setFixedSize(220,40);
-	ende_m->setObjectName("ende");
-	ende_m->setStyleSheet(R"(
-		#ende{
-			color: #DADADA;
-			font-size: 16px;
-			background-color: #313131;
-			border-radius: 10px;
-			padding: 5px;
-		}
-		#ende::Item{
-			color: #DADADA;
-			background-color: #313131;
-		}
-		)");
-    layout->addWidget(ende_m,1,Qt::AlignCenter);
 
     QHBoxLayout* buttonLayout = new QHBoxLayout();
 
@@ -550,10 +524,6 @@ QString createVerDialog::getCampus() const {
     return campus_m->currentText();
 }
 
-QString createVerDialog::getBegin() const {
-    return begin_m->currentText();
-}
-
-QString createVerDialog::getEnde() const {
-    return ende_m->currentText();
+QString createVerDialog::getTime() const{
+	return time_m->currentText();
 }

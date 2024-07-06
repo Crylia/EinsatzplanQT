@@ -10,5 +10,5 @@ public:
     void deleteMember(QString id);
     void deleteVeranstaltung(QString veranstaltungsname);
     void createMember(QString name, QString email, QString passwort, bool admin);
-    void createVeranstaltung(QString name, QString raum, QString campus, QString begin, QString ende);
+    void createVeranstaltung(QString name, QString raum, QString campus, QString time);
 };
