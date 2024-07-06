@@ -461,7 +461,7 @@ std::vector<std::string> DBPlan::getPlan() {
             std::string rowstring;
             for (const auto& col : row) {
                 rowstring.append(col.c_str());
-                rowstring.append(" , ");
+                rowstring.append(",");
             }
             plan.push_back(rowstring);
             
