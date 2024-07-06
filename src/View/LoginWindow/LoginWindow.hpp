@@ -1,12 +1,13 @@
 # pragma once
+
 #include <QMainWindow>
+
 #include "../LoginFrame/LoginFrame.hpp"
 
-class LoginWindow : public QMainWindow{
+class LoginWindow : public QMainWindow {
     Q_OBJECT
 private:
-    LoginFrame* frame_m;
-
+    LoginFrame* m_frame;
 
 public:
     LoginWindow(QWidget* parent = nullptr);

@@ -84,8 +84,8 @@ CREATE TABLE Veranstalter (
     CREATE TABLE Veranstalter_Veranstaltung_Uhrzeit (
         uhrzeit_ID INTEGER REFERENCES Uhrzeit(ID),
         tag INTEGER NOT NULL,
-        veranstalter_ID INTEGER REFERENCES Veranstalter(ID),
-        veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID),
+        veranstalter_ID INTEGER REFERENCES Veranstalter(ID) ON DELETE CASCADE,
+        veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
         PRIMARY KEY(uhrzeit_ID, tag)
     );
 
@@ -106,17 +106,16 @@ CREATE TABLE Veranstalter (
 
 
     INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES 
-    ('A', '101', 'Grundlagen der Programmierung', 2),
-('B', '202', 'Algorithmen und Datenstrukturen', 4),
-('A', '103', 'Netzwerkgrundlagen', 2),
-('B', '204', 'Betriebssystemkonzepte', 4),
-('A', '105', 'Softwareentwicklung', 2),
-('B', '206', 'Intelligente Systeme', 4),
-('A', '107', 'Datenbanksysteme', 2),
-('B', '208', 'Webtechnologien', 2),
-('A', '109', 'Computergrafikgrundlagen', 2),
-('B', '210', 'Maschinelles Lernen', 2);
-
+    ('A', '101', 'WIN', 2),
+('B', '202', 'ALD', 4),
+('A', '103', 'GDI', 2),
+('B', '204', 'BSY', 4),
+('A', '105', 'SWE', 2),
+('B', '206', 'ITS', 4),
+('A', '107', 'DBS', 2),
+('B', '208', 'WEB', 2),
+('A', '109', 'BVA', 2),
+('B', '210', 'THI', 2);
 
 INSERT INTO Veranstalter_Veranstaltung_Uhrzeit (uhrzeit_ID, tag, veranstaltung_ID) VALUES
 (1, 1, 1),

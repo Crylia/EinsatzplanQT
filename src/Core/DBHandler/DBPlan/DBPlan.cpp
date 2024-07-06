@@ -13,7 +13,6 @@ void DBPlan::vertretung(std::string tag, std::string stunde, std::string dauer) 
 			nextStunde = std::to_string(std::stoi(stunde) + 2);
 		else
 			nextStunde = std::to_string(std::stoi(stunde) + 1);
-		fmt::print(nextStunde);
 
 		if (prevStunde == "0") {
 			prevStunde = "5";
@@ -95,12 +94,12 @@ void DBPlan::deleteVeranstalterForeign(std::string id) {
 }
 
 void DBPlan::deleteVeranstalter(std::string id) {
-	deleteVeranstalterForeign(id);
-
 	try {
+		deleteVeranstalterForeign(id);
+
 		pqxx::work worker(connectionObject);
 
-		worker.exec_params("DELETE FROM Veranstalter WHERE ID = $1", id);
+		worker.exec_params("DELETE FROM Veranstalter WHERE ID = $1;", id);
 		worker.commit( );
 	}
 	catch (const std::exception& e) {
@@ -108,12 +107,13 @@ void DBPlan::deleteVeranstalter(std::string id) {
 	}
 }
 
-void DBPlan::deleteVeranstaltungForeign(std::string id) {
+void DBPlan::deleteVeranstaltungForeign(std::string name) {
 	try {
 		pqxx::work worker(connectionObject);
 
-		worker.exec_params("UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstaltung_ID = NULL WHERE Veranstalter_ID = $1;", id);
+		worker.exec_params("DELETE FROM Veranstalter_Veranstaltung_Uhrzeit WHERE Veranstaltung_ID = (SELECT ID FROM Veranstaltung WHERE name = '$1');", name);
 		worker.commit( );
+
 		versendeEmails( );
 	}
 	catch (const std::exception& e) {
@@ -122,12 +122,12 @@ void DBPlan::deleteVeranstaltungForeign(std::string id) {
 }
 
 void DBPlan::deleteVeranstaltung(std::string id) {
-	deleteVeranstaltungForeign(id);
-
 	try {
+		//deleteVeranstaltungForeign(id);
+
 		pqxx::work worker(connectionObject);
 
-		worker.exec_params("DELETE FROM Veranstaltung WHERE ID = $1", id);
+		worker.exec_params("DELETE FROM Veranstaltung WHERE name = $1;", id);
 		worker.commit( );
 	}
 	catch (const std::exception& e) {
@@ -219,7 +219,6 @@ void DBPlan::addTwoHour(std::string tag, std::string stunde) {
 	try {
 		std::string prevStunde = std::to_string(std::stoi(stunde) - 1);
 
-		fmt::printf("PrevStunde: %s\n Tag: %s\n Stunde: %s \n", prevStunde, tag, stunde);
 		pqxx::work worker(connectionObject);
 		std::string query =
 			R"(UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_id = (SELECT ID FROM Veranstalter
@@ -319,7 +318,6 @@ void DBPlan::createPlan( ) {
 			std::string tagStr = std::to_string(tag);
 			for (int stunde = 1; stunde < 6; stunde++) {
 				std::string stundeStr = std::to_string(stunde);
-				//get dauer of next class
 
 				if (std::stoi(getDauer(tagStr, stundeStr)) == 2) {
 					stunde == 1 ? addFirstOfDayTwo(tagStr) : addTwoHour(tagStr, stundeStr);
@@ -341,15 +339,17 @@ void DBPlan::createPlan( ) {
 }
 
 std::vector<std::string> DBPlan::getPlan( ) {
+	createPlan( );
 	try {
 		std::vector<std::string> plan;
 
 		pqxx::work worker(connectionObject);
 
 		std::string query =
-			R"(SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit LEFT JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID
-			LEFT JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID
-			LEFT JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID 
+			R"(SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, o.raum, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit 
+			JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID
+			JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID
+			JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID 
 			ORDER BY tag, uhrzeit_ID;)";
 
 		pqxx::result response = worker.exec(query);
@@ -359,7 +359,7 @@ std::vector<std::string> DBPlan::getPlan( ) {
 			std::string rowstring;
 			for (const auto& col : row) {
 				rowstring.append(col.c_str( ));
-				rowstring.append(" , ");
+				rowstring.append(",");
 			}
 			plan.push_back(rowstring);
 		}

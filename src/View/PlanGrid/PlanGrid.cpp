@@ -1,7 +1,8 @@
 #include "PlanGrid.hpp"
 
 PlanGrid::PlanGrid(QWidget* parent)
-	:QWidget(parent) {
+	:QWidget(parent),
+	planGridController(new PlanGridController( )) {
 	setObjectName("PlanGrid");
 	setStyleSheet(R"(
 		QWidget{
@@ -16,31 +17,17 @@ PlanGrid::PlanGrid(QWidget* parent)
 	m_weekdays[3] = "Donnerstag";
 	m_weekdays[4] = "Freitag";
 
-	m_times[0] = "8:00 - 10:00";
-	m_times[1] = "10:00 - 12:00";
-	m_times[2] = "12:00 - 14:00";
-	m_times[3] = "14:00 - 16:00";
-	m_times[4] = "16:00 - 18:00";
+	m_times[0] = "08:00";
+	m_times[1] = "10:00";
+	m_times[2] = "12:00";
+	m_times[3] = "14:00";
+	m_times[4] = "16:00";
 
-	planMap = new QMap<QPair<QString, QString>, QLabel*>( );
+	planMap = new QMap<QPair<QString, QString>, QWidget*>( );
 
 	gridLayout = new QGridLayout(this);
 
-	for (int i = 0; i < 5; ++i)
-		for (int j = 0; j < 5; ++j) {
-			QLabel* temp = new QLabel( );
-			temp->setObjectName("temp");
-			temp->setStyleSheet(R"(
-				#temp{
-					
-				}
-			)");
-			temp->setFixedSize(240, 100);
-			planMap->insert(qMakePair(m_weekdays[i], m_times[j]), temp);
-		}
-
-	populateGrid( );
-
+	// Empty top left corner
 	QLabel* temp = new QLabel( );
 	temp->setObjectName("temp");
 	temp->setStyleSheet(R"(
@@ -51,6 +38,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 	temp->setFixedSize(130, 80);
 	gridLayout->addWidget(temp, 0, 0);
 
+	// Add Weekdays ontop of plan
 	for (int i = 0; i < 5; i++) {
 		QLabel* temp = new QLabel(m_weekdays[i]);
 		temp->setFixedSize(240, 80);
@@ -77,6 +65,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 		gridLayout->addWidget(temp, 0, i + 1);
 	}
 
+	// Add times left to plan
 	for (int i = 0; i < 5; i++) {
 		QLabel* temp = new QLabel(m_times[i]);
 		temp->setFixedSize(130, 100);
@@ -102,6 +91,9 @@ PlanGrid::PlanGrid(QWidget* parent)
 		temp->setAlignment(Qt::AlignCenter);
 		gridLayout->addWidget(temp, i + 1, 0);
 	}
+
+	planMap = planGridController->getVeranstaltungen( );
+	populateGrid( );
 
 	gridLayout->setSpacing(0);
 	setLayout(gridLayout);

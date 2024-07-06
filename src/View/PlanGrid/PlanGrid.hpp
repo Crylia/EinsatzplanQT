@@ -18,7 +18,8 @@ private:
 
 protected:
 	QGridLayout* gridLayout;
-	QMap<QPair<QString, QString>, QLabel*>* planMap;
+	QMap<QPair<QString, QString>, QWidget*>* planMap;
+	PlanGridController* planGridController;
 
 public:
 	PlanGrid(QWidget* parent = nullptr);

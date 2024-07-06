@@ -32,5 +32,5 @@ void EinsatzplanFrameController::createMember(QString name, QString email, QStri
 
 void EinsatzplanFrameController::createVeranstaltung(QString name, QString raum, QString campus, QString time) {
 	DBPlan* db = new DBPlan(m_connectionString);
-	db->hinzufuegenVeranstaltung(name.toStdString( ), time.toStdString( ), campus.toStdString( ), raum.toStdString( ));
+	db->hinzufuegenVeranstaltung(name.toStdString( ), std::to_string((char)time.toStdString( ).at(0) - 48), campus.toStdString( ), raum.toStdString( ));
 }
