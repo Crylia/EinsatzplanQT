@@ -38,4 +38,3 @@ int DBLogin::checkValidLogin(std::string id, std::string pw) {
 
 }
 
-

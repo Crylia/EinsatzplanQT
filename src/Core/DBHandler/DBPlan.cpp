@@ -84,6 +84,7 @@ void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
         
         sucheVertretung(tag, stunde);
         meldeGesund(id);
+        versendeEmails();
 
     }
     catch (const std::exception& e) {
@@ -118,6 +119,7 @@ void DBPlan::deleteVeranstalterForeign(std::string id) {
 
         pqxx::result response = worker.exec_params(query, id);
         worker.commit();
+        versendeEmails();
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -150,6 +152,7 @@ void DBPlan::deleteVeranstaltungForeign(std::string id) {
 
         pqxx::result response = worker.exec_params(query, id);
         worker.commit();
+        versendeEmails();
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -473,5 +476,8 @@ std::vector<std::string> DBPlan::getPlan() {
     }
 }
 
+void DBPlan::versendeEmails() {
+    std::cout << "Der Einsatzplan wurde geupdated" << std::endl;
+}
 
 

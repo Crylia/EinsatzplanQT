@@ -1,7 +1,7 @@
 #include "DBHandler.hpp"
 
 #include <iostream>
-//host = localhost port = 5432 dbname = postgres user = postgres password = ****
+//"host = localhost port = 5432 dbname = postgres user = postgres password = AlbertBridge1?"
 
 
 DBHandler::DBHandler(std::string connStr) : connectionObject(connStr.c_str()) {
@@ -15,11 +15,12 @@ DBHandler::DBHandler(std::string connStr) : connectionObject(connStr.c_str()) {
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
 };
 
 
- 
-  
+
+
 
 
 

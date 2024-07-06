@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/EinsatzplanQT_autogen",
+	"CMAKE_BINARY_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT",
+	"CMAKE_SOURCE_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT",
+	"INCLUDE_DIR" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/EinsatzplanQT_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/assets/account-box.png"
+	],
+	"LOCK_FILE" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/EinsatzplanQT_autogen.dir/AutoRcc_resources_GBFAFXFCVO_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "GBFAFXFCVO",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/build/CMakeFiles/EinsatzplanQT_autogen.dir/AutoRcc_resources_GBFAFXFCVO_Used.txt",
+	"SOURCE" : "/home/aj/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/assets/resources.qrc",
+	"VERBOSITY" : 0
+}
