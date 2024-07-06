@@ -47,7 +47,7 @@ public:
 	
 	void createPlan();
 
-	//Each string in form of (tag , anfangszeit , endzeit , Ort , Veranstaltung , Mitarbeiter , mitarbeiterID , )  
+	//Each string in form of (tag , anfangszeit , Ort , Veranstaltung , Mitarbeiter , mitarbeiterID , )  
 	std::vector<std::string> getPlan();
 
 
