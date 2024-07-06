@@ -1,25 +1,51 @@
+
+DROP VIEW studenten_veranstalter;
+
+DROP TABLE Veranstalter_Veranstaltung_Uhrzeit;
+DROP TABLE Studenten;
+DROP TABLE Veranstalter;
+DROP TABLE Uhrzeit;
+DROP TABLE veranstaltung;
+DROP SEQUENCE global_id_seq;
+
+
+
+
+
 CREATE SEQUENCE global_id_seq;
 
 CREATE TABLE Studenten (
-            matrikelnummer INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'),
-            "name VARCHAR(30) NOT NULL,
-            "email VARCHAR(30) NOT NULL,
-            "passwort VARCHAR(30) NOT NULL);
+    matrikelnummer INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'),
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    passwort VARCHAR(30) NOT NULL
+);
 
 
- "CREATE TABLE Veranstalter (
-            ID INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'), 
-            name VARCHAR(30),
-            email VARCHAR(30),
-            passwort VARCHAR(30),
-            admin BOOLEAN NOT NULL DEFAULT(FALSE)
+CREATE OR REPLACE FUNCTION random_between_two()
+RETURNS VARCHAR AS $$
+BEGIN
+    IF random() < 0.5 THEN
+        RETURN 'A';
+    ELSE
+        RETURN 'B';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
 
-            );
+
+CREATE TABLE Veranstalter (
+    ID INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'), 
+    name VARCHAR(30),
+    email VARCHAR(30),
+    passwort VARCHAR(30),
+    arbeitszeit INTEGER DEFAULT 0,
+    standort VARCHAR(30) DEFAULT random_between_two(),
+    krank BOOLEAN DEFAULT FALSE,
+    admin BOOLEAN NOT NULL DEFAULT FALSE
+);
 
 
-CREATE TABLE krank (
-            veranstalter_ID INTEGER,
-            FOREIGN KEY (veranstalter_ID) REFERENCES veranstalter(ID) ON DELETE CASCADE);
 
 
             
@@ -33,8 +59,10 @@ CREATE TABLE krank (
  CREATE TABLE Veranstaltung ( 
             ID SERIAL PRIMARY KEY, 
             ort VARCHAR(30) NOT NULL, 
-            raum VARCHAR(30) NOT NULL, 
-            name VARCHAR(30) NOT NULL );
+            raum INTEGER NOT NULL, 
+            name VARCHAR(90) NOT NULL,
+            dauer INTEGER NOT NULL 
+            );
 
 
 
@@ -54,10 +82,10 @@ CREATE TABLE krank (
             ('16:00:00', '18:00:00'); 
 
 
-  CREATE TABLE Veranstalter_Veranstaltung_Uhrzeit (
+    CREATE TABLE Veranstalter_Veranstaltung_Uhrzeit (
         uhrzeit_ID INTEGER REFERENCES Uhrzeit(ID),
         tag INTEGER NOT NULL,
-        veranstalter_ID INTEGER REFERNECES Veranstalter(ID),
+        veranstalter_ID INTEGER REFERENCES Veranstalter(ID),
         veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID),
         PRIMARY KEY(uhrzeit_ID, tag)
     );
@@ -75,19 +103,8 @@ CREATE TABLE krank (
 ('net_knight', 'user8@example.com', 'password8', FALSE),
 ('bit_boss', 'user9@example.com', 'password9', FALSE),
 ('sys_sensei', 'user10@example.com', 'password10', FALSE),
-('crypto_champ', 'user11@example.com', 'password11', FALSE),
-('cloud_conqueror', 'user12@example.com', 'password12', FALSE),
-('hack_whiz', 'user13@example.com', 'password13', FALSE),
-('matrix_mage', 'user14@example.com', 'password14', FALSE),
-('app_artisan', 'user15@example.com', 'password15', FALSE),
-('ai_architect', 'user16@example.com', 'password16', FALSE),
-('tech_titan', 'user17@example.com', 'password17', FALSE),
-('proto_pro', 'user18@example.com', 'password18', FALSE),
-('alg_adept', 'user19@example.com', 'password19', FALSE),
-('data_diver', 'user20@example.com', 'password20', FALSE),
-('web_warrior', 'user21@example.com', 'password21', FALSE),
-('os_overlord', 'user22@example.com', 'password22', FALSE),
-('kernel_keeper', 'user23@example.com', 'password23', FALSE);
+('crypto_champ', 'user11@example.com', 'password11', FALSE);
+
 
     INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES 
     ('A', '101', 'Grundlagen der Programmierung', 2),
@@ -104,9 +121,10 @@ CREATE TABLE krank (
 
 INSERT INTO Veranstalter_Veranstaltung_Uhrzeit (uhrzeit_ID, tag, veranstaltung_ID) VALUES
 (1, 1, 1),
-(2, 1, 2),
-(3, 1, 2),
+(2, 1, 7),
+(3, 1, 8),
 (4, 1, 3),
+(5, 1, 10),
 
 (1, 2, 4),
 (2, 2, 4),
@@ -131,3 +149,4 @@ INSERT INTO Veranstalter_Veranstaltung_Uhrzeit (uhrzeit_ID, tag, veranstaltung_I
 (3, 5, 6),
 (4, 5, 7),
 (5, 5, 8);
+
