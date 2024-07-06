@@ -8,21 +8,27 @@
 
 class DBPlan : public DBHandler {
 private:
+	//Functions needed for creation and updating of the plan
 	std::string getDauer(std::string tag, std::string stunde);
 	void addFirstOfDayTwo(std::string tag);
 	void addTwoHour(std::string tag, std::string stunde);
 	void addFirstOfDayFour(std::string tag);
 	void upperHour(std::string tag, std::string stunde);
 	void addFourHour(std::string tag, std::string stunde);
-
+	void sucheVertretung(std::string tag, std::string stunde);
+	void vertretung(std::string tag, std::string stunde, std::string dauer);
+	void deleteVeranstalterForeign(std::string id);
+	void deleteVeranstaltungForeign(std::string id);
 	void updateStandort(std::string tag, std::string stunde);
+	void incarbeitszeit(std::string tag, std::string stunde, std::string amount);
 public:
 	DBPlan(std::string connStr);
-	void meldeKrank(std::string id, std::string zeit);
+
+	void meldeKrank(std::string id, std::string tag, std::string stunde);
 	void meldeGesund(std::string id);
 	void deleteVeranstaltung(std::string id);
 	void hinzufuegenVeranstaltung(std::string name, std::string dauer, std::string ort, std::string raum);
-
+	
 
 	void deleteVeranstalter(std::string id);
 	void hinzufuegenVeranstalter(std::string email, std::string name, std::string pw, std::string admin);
@@ -33,10 +39,11 @@ public:
 	
 
 	void createPlan();
-	void incarbeitszeit(std::string tag, std::string stunde, std::string amount);
+
+	//Each string in form of (tag , anfangszeit , endzeit , Ort , Veranstaltung , Mitarbeiter , mitarbeiterID , )  
+	std::vector<std::string> getPlan();
 
 
-	void clear();
 
 };
 
