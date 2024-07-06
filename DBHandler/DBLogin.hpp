@@ -10,7 +10,7 @@ public:
 return 1 if admin | 0 if not admin | -1 if failed
 
 */
-	int checkValidLogin(int id, std::string pw);
+	int checkValidLogin(std::string id, std::string pw);
 };
 
 
