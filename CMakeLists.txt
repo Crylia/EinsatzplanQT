@@ -28,5 +28,6 @@ target_link_libraries(EinsatzplanQT PRIVATE
 	Qt${QT_VERSION_MAJOR}::Core
 	Qt${QT_VERSION_MAJOR}::Sql
 	fmt
+	pqxx
 	stdc++fs
 )

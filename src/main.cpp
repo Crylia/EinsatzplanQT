@@ -1,4 +1,5 @@
 # include <QApplication>
+
 # include "View/LoginWindow/LoginWindow.hpp"
 
 int main(int argc, char* argv[]){
