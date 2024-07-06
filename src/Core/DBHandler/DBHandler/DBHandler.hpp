@@ -1,7 +1,8 @@
-#ifndef DBHANDLER_HPP_
-#define DBHANDLER_HPP_
+#pragma onc
+
 #include <pqxx/pqxx>
 #include <string>
+#include <fmt/core.h>
 
 class DBHandler {
 protected:
@@ -10,5 +11,3 @@ protected:
 public:
 	DBHandler(std::string connStr);
 };
-
-#endif

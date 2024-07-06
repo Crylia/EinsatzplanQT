@@ -1,16 +1,23 @@
-# pragma once
-# include <QLabel>
-# include <iostream>
-# include <sstream>
-# include "../../Core/DBHandler/DBPlan.hpp"
+#pragma once
 
-class PlanGridController{
+#include <QLabel>
+#include <sstream>
+#include <fmt/format.h>
+
+#include "../../Core/config/config.hpp"
+#include "../../Core/DBHandler/DBPlan/DBPlan.hpp"
+
+class PlanGridController {
+private:
+	std::string m_connectionString;
+
 protected:
-    QString weekdays[5];
-    QString times[5];
-    QMap<QPair<QString, QString>, QLabel*>* planMap;
-public:
-    PlanGridController();
+	QString weekdays[5];
+	QString times[5];
+	QMap<QPair<QString, QString>, QLabel*>* planMap;
 
-    QMap<QPair<QString, QString>, QLabel*>* getVeranstaltungen();
+public:
+	PlanGridController( );
+
+	QMap<QPair<QString, QString>, QLabel*>* getVeranstaltungen( );
 };

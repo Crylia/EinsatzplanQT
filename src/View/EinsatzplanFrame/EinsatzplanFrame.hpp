@@ -1,96 +1,47 @@
-# pragma once
-# include <QFrame>
-# include <QLabel>
-# include <QPushButton>
-# include <QVBoxLayout>
-# include <QHBoxLayout>
-# include <QMainWindow>
-# include <QApplication>
-# include <QMessageBox>
-# include <QInputDialog>
-# include <QCheckBox>
-# include <QComboBox>
-# include "../PlanGrid/PlanGrid.hpp"
-# include "../../Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp"
+#pragma once
 
+#include <QFrame>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QMainWindow>
+#include <QApplication>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QCheckBox>
+#include <QComboBox>
 
-class EinsatzplanFrame : public QFrame{
-    Q_OBJECT
+#include "../PlanGrid/PlanGrid.hpp"
+#include "../../Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp"
+#include "Dialogs/CreateMember/CreateMember.hpp"
+#include "Dialogs/CreateVeranstaltung/CreateVeranstaltung.hpp"
+
+class EinsatzplanFrame : public QFrame {
+	Q_OBJECT
 protected:
-    EinsatzplanFrameController* controller_m;
+	EinsatzplanFrameController* m_controller;
 
-    QLabel* profileImg_m;
-    QLabel* id_m;
-    QLabel* einsatzplanLabel_m;
-    
-    PlanGrid* planGrid_m;
-    
-    QPushButton* abmeldenButton_m;
-    QPushButton* createMemberButton_m;
-    QPushButton* deleteMemberButton_m;
-    QPushButton* createVeranstaltungButton_m;
-    QPushButton* deleteVeranstaltungButton_m;
+	QLabel* m_profileImg;
+	QLabel* m_id;
+	QLabel* m_einsatzplanLabel;
+
+	PlanGrid* m_planGrid;
+
+	QPushButton* m_abmeldenButton;
+	QPushButton* m_createMemberButton;
+	QPushButton* m_deleteMemberButton;
+	QPushButton* m_createVeranstaltungButton;
+	QPushButton* m_deleteVeranstaltungButton;
+
 public:
-    EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
+	EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
 
 private slots:
 
-    void abmelden();
-    void deleteVeranstaltung();
-    void createVeranstaltung();
-    void deleteMember();
-    void createMember();
-
-};
-
-class createVerDialog : public QDialog{
-		Q_OBJECT
-	protected:
-
-		QLineEdit* name_m;
-        QLineEdit* raum_m;
-        QComboBox* campus_m;
-		QComboBox* time_m;
-        QPushButton* okButton_m;
-        QPushButton* cancelButton_m;
-
-public:
-
-	createVerDialog(QWidget* parent = nullptr);
-
-    QString getName() const;
-    QString getRaum() const;
-    QString getCampus() const;
-    QString getTime() const;
-};
-
-class createMemDialog : public QDialog{
-		Q_OBJECT
-	protected:
-		QLineEdit* name_m;
-		QLineEdit* email_m;
-		QLineEdit* password_m;
-		QCheckBox* admin_m;
-        QPushButton* okButton_m;
-        QPushButton* cancelButton_m;
-
-public:
-
-	createMemDialog(QWidget* parent = nullptr);
-
-    QString getName() const;
-    QString getEmail() const;
-    QString getPassword() const;
-    bool isAdmin() const;
-};
-
-class deleteVerDialog : QDialog{
-    Q_OBJECT
-protected:
-    QLineEdit* veranstaltung_m;
-    QPushButton* okButton_m;
-    QPushButton* cancleButton_m;
-
-public:
-    QString getVeranstaltung();
+	void abmelden( );
+	void deleteVeranstaltung( );
+	void createVeranstaltung( );
+	void deleteMember( );
+	void createMember( );
 };
