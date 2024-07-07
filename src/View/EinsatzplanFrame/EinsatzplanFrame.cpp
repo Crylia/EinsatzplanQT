@@ -196,7 +196,6 @@ void EinsatzplanFrame::deleteVeranstaltung( ) {
 		"", &ok);
 	if (ok && text.size( ) == 3) {
 		m_controller->deleteVeranstaltung(text);
-		QMessageBox::information(this, "Veranstaltung entfernen", "Veranstaltung wird entfernt!");
 
 		m_planGrid->setPlanMap(m_planGrid->planGridController->getVeranstaltungen( ));
 		m_planGrid->populateGrid( );
@@ -222,7 +221,8 @@ void EinsatzplanFrame::deleteMember( ) {
 
 	if (ok && text.size( ) == 7) {
 		m_controller->deleteMember(text);
-		QMessageBox::information(this, "Mitarbeiter entfernen", "Mitarbeiter wird entfernt!");
+		m_planGrid->setPlanMap(m_planGrid->planGridController->getVeranstaltungen( ));
+		m_planGrid->populateGrid( );
 	}
 }
 

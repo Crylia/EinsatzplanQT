@@ -15,7 +15,6 @@ private:
 	QString m_weekdays[5];
 	QString m_times[6];
 
-
 protected:
 	QGridLayout* gridLayout;
 	QMap<QPair<QString, QString>, QWidget*>* planMap;
