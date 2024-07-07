@@ -42,7 +42,7 @@ public:
 	 *
 	 * @param id
 	 */
-	void meldeGesund(std::string id);
+	void meldeGesund(std::string tag, std::string stunde);
 
 	/**
 	 * @brief Deletes Veranstaltung from relation Veranstaltung and from Einsatzplan
