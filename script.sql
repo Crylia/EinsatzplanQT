@@ -1,5 +1,6 @@
 
 DROP VIEW studenten_veranstalter;
+
 DROP TABLE Veranstalter_Veranstaltung_Uhrzeit;
 DROP TABLE Studenten;
 DROP TABLE Veranstalter;
@@ -11,7 +12,7 @@ DROP SEQUENCE global_id_seq;
 
 
 
-CREATE SEQUENCE global_id_seq;
+CREATE SEQUENCE global_id_seq START WITH 1000000 INCREMENT BY 1;
 
 CREATE TABLE Studenten (
     matrikelnummer INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'),
@@ -60,7 +61,8 @@ CREATE TABLE Veranstalter (
             ort VARCHAR(30) NOT NULL, 
             raum INTEGER NOT NULL, 
             name VARCHAR(90) NOT NULL,
-            dauer INTEGER NOT NULL 
+            dauer INTEGER NOT NULL,
+            used INTEGER DEFAULT(0)
             );
 
 
@@ -88,63 +90,3 @@ CREATE TABLE Veranstalter (
         veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
         PRIMARY KEY(uhrzeit_ID, tag)
     );
-
-
-    INSERT INTO Veranstalter (name, email, passwort, admin) VALUES
-       ('tech_guru', 'admin@example.com', 'password123', TRUE),
-('code_master', 'user1@example.com', 'password1', FALSE),
-('binary_hero', 'user2@example.com', 'password2', FALSE),
-('debug_ninja', 'user3@example.com', 'password3', FALSE),
-('data_wizard', 'user4@example.com', 'password4', FALSE),
-('script_samurai', 'user5@example.com', 'password5', FALSE),
-('dev_genius', 'user6@example.com', 'password6', FALSE),
-('cyber_maven', 'user7@example.com', 'password7', FALSE),
-('net_knight', 'user8@example.com', 'password8', FALSE),
-('bit_boss', 'user9@example.com', 'password9', FALSE),
-('sys_sensei', 'user10@example.com', 'password10', FALSE),
-('crypto_champ', 'user11@example.com', 'password11', FALSE);
-
-
-    INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES 
-    ('A', '101', 'WIN', 2),
-('B', '202', 'ALD', 4),
-('A', '103', 'GDI', 2),
-('B', '204', 'BSY', 4),
-('A', '105', 'SWE', 2),
-('B', '206', 'ITS', 4),
-('A', '107', 'DBS', 2),
-('B', '208', 'WEB', 2),
-('A', '109', 'BVA', 2),
-('B', '210', 'THI', 2);
-
-INSERT INTO Veranstalter_Veranstaltung_Uhrzeit (uhrzeit_ID, tag, veranstaltung_ID) VALUES
-(1, 1, 1),
-(2, 1, 7),
-(3, 1, 8),
-(4, 1, 3),
-(5, 1, 10),
-
-(1, 2, 4),
-(2, 2, 4),
-(3, 2, 5),
-(4, 2, 6),
-(5, 2, 6),
-
-(1, 3, 7),
-(2, 3, 8),
-(3, 3, 9),
-(4, 3, 10),
-(5, 3, 1),
-
-(1, 4, 2),
-(2, 4, 2),
-(3, 4, 3),
-(4, 4, 4),
-(5, 4, 4),
-
-(1, 5, 5),
-(2, 5, 6),
-(3, 5, 6),
-(4, 5, 7),
-(5, 5, 8);
-
