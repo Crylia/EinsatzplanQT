@@ -1,7 +1,7 @@
 #include "LoginFrameController.hpp"
 
 LoginFrameController::LoginFrameController( ) {
-	auto config = load_config("../config.cfg");
+	auto config = load_config( );
 
 	m_connectionString = fmt::format(
 		"host={} port={} dbname={} user={} password={}",

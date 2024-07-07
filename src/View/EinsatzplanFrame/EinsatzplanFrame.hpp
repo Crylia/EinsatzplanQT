@@ -11,6 +11,7 @@
 #include <QInputDialog>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QProcess>
 
 #include "../PlanGrid/PlanGrid.hpp"
 #include "../../Controller/EinsatzplanFrameController/EinsatzplanFrameController.hpp"
@@ -38,7 +39,6 @@ public:
 	EinsatzplanFrame(QWidget* parent = nullptr, QString id = "0000000", bool admin = true);
 
 private slots:
-
 	void abmelden( );
 	void deleteVeranstaltung( );
 	void createVeranstaltung( );

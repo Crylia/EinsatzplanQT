@@ -13,17 +13,17 @@
 #include "../../View/EinsatzplanWindow/EinsatzplanWindow.hpp"
 
 class LoginFrame : public QFrame {
-    Q_OBJECT
+	Q_OBJECT
 protected:
-    QMainWindow* m_parent;
-    QLabel* m_header;
-    QLineEdit* m_id;
-    QLineEdit* m_password;
-    QPushButton* m_loginButton;
+	QMainWindow* m_parent;
+	QLabel* m_header;
+	QLineEdit* m_id;
+	QLineEdit* m_password;
+	QPushButton* m_loginButton;
 
-    void loginButtonClicked( );
+	void loginButtonClicked( );
 
 public:
-    LoginFrame(QWidget* parent = nullptr);
-    ~LoginFrame( );
+	LoginFrame(QWidget* parent = nullptr);
+	~LoginFrame( );
 };

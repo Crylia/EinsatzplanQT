@@ -92,18 +92,18 @@ CREATE TABLE Veranstalter (
     );
 
 INSERT INTO Veranstalter (name, email, passwort, admin) VALUES
-('tech_guru', 'admin@example.com', 'password123', TRUE),
-('code_master', 'user1@example.com', 'password1', FALSE),
-('binary_hero', 'user2@example.com', 'password2', FALSE),
-('debug_ninja', 'user3@example.com', 'password3', FALSE),
-('data_wizard', 'user4@example.com', 'password4', FALSE),
-('script_samurai', 'user5@example.com', 'password5', FALSE),
-('dev_genius', 'user6@example.com', 'password6', FALSE),
-('cyber_maven', 'user7@example.com', 'password7', FALSE),
-('net_knight', 'user8@example.com', 'password8', FALSE),
-('bit_boss', 'user9@example.com', 'password9', FALSE),
-('sys_sensei', 'user10@example.com', 'password10', FALSE),
-('crypto_champ', 'user11@example.com', 'password11', FALSE);
+('Davids', 'admin@example.com', 'password123', TRUE),
+('Dalitz', 'user1@example.com', 'password1', FALSE),
+('Tipp', 'user2@example.com', 'password2', FALSE),
+('Quix', 'user3@example.com', 'password3', FALSE),
+('Nietsche', 'user4@example.com', 'password4', FALSE),
+('Ueberholz', 'user5@example.com', 'password5', FALSE),
+('Rethmann', 'user6@example.com', 'password6', FALSE),
+('Pohle-Fröhlich', 'user7@example.com', 'password7', FALSE),
+('Stockmann', 'user8@example.com', 'password8', FALSE),
+('Gref', 'user9@example.com', 'password9', FALSE),
+('Naroska', 'user10@example.com', 'password10', FALSE),
+('Grothe', 'user11@example.com', 'supersicherespasswort123', FALSE);
 
 
 INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES 

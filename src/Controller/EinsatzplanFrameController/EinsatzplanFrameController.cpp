@@ -3,7 +3,7 @@
 EinsatzplanFrameController::EinsatzplanFrameController(QString id, bool admin)
 	:m_id(id),
 	m_admin(admin) {
-	const std::map<std::string, std::string> config = load_config("../config.cfg");
+	const std::map<std::string, std::string> config = load_config( );
 
 	m_connectionString = fmt::format(
 		"host={} port={} dbname={} user={} password={}",

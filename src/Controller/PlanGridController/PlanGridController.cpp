@@ -15,7 +15,7 @@ PlanGridController::PlanGridController( ) {
 
 	planMap = new QMap<QPair<QString, QString>, QWidget*>( );
 
-	const std::map<std::string, std::string> config = load_config("../config.cfg");
+	const std::map<std::string, std::string> config = load_config( );
 
 	m_connectionString = fmt::format(
 		"host={} port={} dbname={} user={} password={}",
@@ -30,7 +30,6 @@ PlanGridController::PlanGridController( ) {
 QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen( ) {
 	DBPlan* db = new DBPlan(m_connectionString);
 
-	// stringFormat = tag , anfangszeit , Ort , Veranstaltung , Mitarbeiter , mitarbeiterID
 	std::vector<std::string> planData = db->getPlan( );
 
 	for (int i = 0; i < 5; ++i)
@@ -57,7 +56,7 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 		while (std::getline(ss, str, ','))
 			infoVector.push_back(str);
 
-		//Wochentag, Uhrzeit,Uhrzeitende, Campus, Veranstaltung, ProfName,raum, veranstaltungs dauer
+		//Wochentag, Uhrzeit,Uhrzeitende, Campus, Veranstaltung, ProfName,raum, prof id
 		QFrame* container = new QFrame( );
 
 		container->setObjectName("container");
@@ -71,13 +70,13 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 
 		QPushButton* widget = new QPushButton(QString::fromStdString(infoVector.at(4) + " - " + infoVector.at(5) + "\n" + infoVector.at(3) + infoVector.at(6)));
 		layout->addWidget(widget);
-		//widget->setAlignment(Qt::AlignCenter);
-		widget->setObjectName("widget");
+		widget->setProperty("MitarbeiterName", QString::fromStdString(infoVector.at(5)));
+		widget->setProperty("MitarbeiterID", QString::fromStdString(infoVector.at(7)));
+		widget->setObjectName("eintragung");
 		widget->setFixedSize(210, 70);
+		widget->setToolTip(QString::fromStdString(infoVector.at(7)));
+		widget->setCursor(Qt::PointingHandCursor);
 		layout->setAlignment(Qt::AlignCenter);
-		connect(widget, &QPushButton::clicked, this, [infoVector]( ) {
-			fmt::print("clicked on " + infoVector.at(4) + '\n');
-			});
 
 		if (infoVector.at(4) == "THI") {
 			color = "#9FA8DA";
@@ -99,12 +98,16 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 			color = "#80CBC4";
 		} else if (infoVector.at(4) == "SWE") {
 			color = "#80DEEA";
+		} else if (infoVector.at(4) == "MA1") {
+			color = "#B39DDB";
+		} else if (infoVector.at(4) == "PE1") {
+			color = "#FFAB91";
 		} else {
-			color = "#313131";
+			color = "#D8D8D8";
 		}
 
 		widget->setStyleSheet(QString::fromStdString(R"(
-			#widget{
+			#eintragung{
 				border: 0px solid #313131;
 				background-color: )" + color + R"(;
 				color: #212121;
@@ -122,4 +125,10 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 	}
 
 	return planMap;
+}
+
+void PlanGridController::Krankmelden(const int id, int tag, int stunde) {
+	DBPlan db(m_connectionString);
+
+	db.meldeKrank(std::to_string(id), std::to_string(tag), std::to_string(stunde));
 }

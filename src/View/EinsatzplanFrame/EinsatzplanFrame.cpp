@@ -11,17 +11,10 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
     }
   )");
 
-	m_controller = new EinsatzplanFrameController(id, admin);
-
 	m_profileImg = new QLabel(this);
 	m_profileImg->setFixedSize(60, 60);
 	m_profileImg->setPixmap(QPixmap(":account-box.png"));
 	m_profileImg->setObjectName("profileImg");
-	m_profileImg->setStyleSheet(R"(
-    #profileImg{
-      
-    }
-  )");
 	m_profileImg->show( );
 
 	m_id = new QLabel(id, this);
@@ -39,6 +32,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_abmeldenButton = new QPushButton("Abmelden", this);
 	m_abmeldenButton->setFixedSize(150, 50);
 	m_abmeldenButton->setObjectName("abmeldenButton");
+	m_abmeldenButton->setCursor(Qt::PointingHandCursor);
 	m_abmeldenButton->setStyleSheet(R"(
     #abmeldenButton{
       font-size: 24px;
@@ -72,6 +66,8 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_planGrid = new PlanGrid(this);
 	m_planGrid->show( );
 
+	m_controller = new EinsatzplanFrameController(id, admin);
+
 	QVBoxLayout* totalLayout = new QVBoxLayout(this);
 	totalLayout->setContentsMargins(30, 20, 30, 20);
 
@@ -94,6 +90,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_createMemberButton = new QPushButton("Mitarbeiter\nHinzufügen", this);
 	m_createMemberButton->setFixedSize(200, 50);
 	m_createMemberButton->setObjectName("createMember");
+	m_createMemberButton->setCursor(Qt::PointingHandCursor);
 	m_createMemberButton->setStyleSheet(R"(
     #createMember{
       font-size: 16px;
@@ -114,6 +111,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_deleteMemberButton = new QPushButton("Mitarbeiter\nEntfernen", this);
 	m_deleteMemberButton->setFixedSize(200, 50);
 	m_deleteMemberButton->setObjectName("deleteMember");
+	m_deleteMemberButton->setCursor(Qt::PointingHandCursor);
 	m_deleteMemberButton->setStyleSheet(R"(
     #deleteMember{
       font-size: 16px;
@@ -134,6 +132,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_createVeranstaltungButton = new QPushButton("Veranstaltung\nHinzufügen", this);
 	m_createVeranstaltungButton->setFixedSize(200, 50);
 	m_createVeranstaltungButton->setObjectName("createVeranstaltung");
+	m_createVeranstaltungButton->setCursor(Qt::PointingHandCursor);
 	m_createVeranstaltungButton->setStyleSheet(R"(
     #createVeranstaltung{
       font-size: 16px;
@@ -154,6 +153,7 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 	m_deleteVeranstaltungButton = new QPushButton("Veranstaltung\nEntfernen", this);
 	m_deleteVeranstaltungButton->setFixedSize(200, 50);
 	m_deleteVeranstaltungButton->setObjectName("deleteVeranstaltung");
+	m_deleteVeranstaltungButton->setCursor(Qt::PointingHandCursor);
 	m_deleteVeranstaltungButton->setStyleSheet(R"(
     #deleteVeranstaltung{
       font-size: 16px;
@@ -182,7 +182,11 @@ EinsatzplanFrame::EinsatzplanFrame(QWidget* parent, QString id, bool admin)
 }
 
 void EinsatzplanFrame::abmelden( ) {
-	static_cast<QApplication*>(parent( )->parent( ))->exit( );
+	QString program = QApplication::applicationFilePath( );
+
+	QProcess::startDetached(program);
+
+	QApplication::quit( );
 }
 
 void EinsatzplanFrame::deleteVeranstaltung( ) {
@@ -193,6 +197,9 @@ void EinsatzplanFrame::deleteVeranstaltung( ) {
 	if (ok && text.size( ) == 3) {
 		m_controller->deleteVeranstaltung(text);
 		QMessageBox::information(this, "Veranstaltung entfernen", "Veranstaltung wird entfernt!");
+
+		m_planGrid->setPlanMap(m_planGrid->planGridController->getVeranstaltungen( ));
+		m_planGrid->populateGrid( );
 	}
 }
 

@@ -5,10 +5,12 @@
 #include <sstream>
 #include <map>
 
-inline static const std::map<std::string, std::string>& load_config(const std::string& filename) {
+inline static const std::map<std::string, std::string>& load_config( ) {
 	static std::map<std::string, std::string> config;
 	static bool is_loaded{ false };
 	static std::string fn{ "" };
+
+	std::string filename = std::string(std::getenv("HOME")) + "/Dokumente/git/EinsatzplanQT/config.cfg";
 
 	if (!is_loaded || fn != filename) {
 		std::ifstream file(filename);
@@ -19,9 +21,8 @@ inline static const std::map<std::string, std::string>& load_config(const std::s
 			std::string key;
 			if (std::getline(line_stream, key, '=')) {
 				std::string value;
-				if (std::getline(line_stream, value)) {
+				if (std::getline(line_stream, value))
 					config[key] = value;
-				}
 			}
 		}
 

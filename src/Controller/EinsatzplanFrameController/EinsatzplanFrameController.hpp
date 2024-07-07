@@ -5,6 +5,7 @@
 
 #include "../../Core/DBHandler/DBPlan/DBPlan.hpp"
 #include "../../Core/config/config.hpp"
+#include "../PlanGridController/PlanGridController.hpp"
 
 class EinsatzplanFrameController {
 private:

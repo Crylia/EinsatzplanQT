@@ -1,4 +1,4 @@
-# include "LoginFrame.hpp"
+#include "LoginFrame.hpp"
 
 LoginFrame::LoginFrame(QWidget* parent)
 	:QFrame(parent) {

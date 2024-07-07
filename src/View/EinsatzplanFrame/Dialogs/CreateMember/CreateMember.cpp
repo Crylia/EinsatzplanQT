@@ -93,7 +93,7 @@ CreateMemDialog::CreateMemDialog(QWidget* parent)
 			color: #212121;
 			font-size: 16px;
 			font-weight: bold;
-			background-color: #53EC87;
+			background-color: #A5D6A7;
 			border-radius: 10px;
 		}
 	)");
@@ -106,7 +106,7 @@ CreateMemDialog::CreateMemDialog(QWidget* parent)
 			color: #212121;
 			font-size: 16px;
 			font-weight: bold;
-			background-color: #FF5555;
+			background-color: #EF9A9A;
 			border-radius: 10px;
 		}
 	)");

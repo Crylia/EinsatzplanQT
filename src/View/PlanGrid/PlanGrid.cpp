@@ -22,6 +22,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 	m_times[2] = "12:00";
 	m_times[3] = "14:00";
 	m_times[4] = "16:00";
+	m_times[5] = "18:00";
 
 	planMap = new QMap<QPair<QString, QString>, QWidget*>( );
 
@@ -67,7 +68,7 @@ PlanGrid::PlanGrid(QWidget* parent)
 
 	// Add times left to plan
 	for (int i = 0; i < 5; i++) {
-		QLabel* temp = new QLabel(m_times[i]);
+		QLabel* temp = new QLabel(QString::fromStdString(m_times[i].toStdString( ) + " - " + m_times[i + 1].toStdString( )));
 		temp->setFixedSize(130, 100);
 		temp->setObjectName("temp");
 		if (i == 4) {
@@ -102,7 +103,25 @@ PlanGrid::PlanGrid(QWidget* parent)
 void PlanGrid::populateGrid( ) {
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; ++j) {
-			gridLayout->addWidget(planMap->value(qMakePair(m_weekdays[i], m_times[j])), j + 1, i + 1);
+			auto widget = planMap->value(qMakePair(m_weekdays[i], m_times[j]));
+			gridLayout->addWidget(widget, j + 1, i + 1);
+			auto pb = widget->findChild<QPushButton*>("eintragung");
+			if (pb != nullptr) {
+				connect(pb, &QPushButton::clicked, this, [this, pb, i, j]( ) {
+					auto name = pb->property("MitarbeiterName").toString( );
+					Krankmelden dialog(name, this);
+					if (dialog.exec( ) == QDialog::Accepted) {
+						auto id = pb->property("MitarbeiterID").toInt( );
+						planGridController->Krankmelden(
+							id,
+							i + 1,
+							j + 1
+						);
+					}
+					planMap = planGridController->getVeranstaltungen( );
+					populateGrid( );
+					});
+			}
 			if (i == 4 && j == 4) {
 				(planMap->value(qMakePair(m_weekdays[i], m_times[j])))->setStyleSheet(R"(
 					border-bottom-right-radius:10px;

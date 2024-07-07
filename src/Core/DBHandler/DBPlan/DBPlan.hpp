@@ -15,15 +15,14 @@ private:
 	void addFirstOfDayFour(std::string tag);
 	void upperHour(std::string tag, std::string stunde);
 	void addFourHour(std::string tag, std::string stunde);
-	void sucheVertretung(std::string tag, std::string stunde);
-	void vertretung(std::string tag, std::string stunde, std::string dauer);
+	void vertretung(std::string tag, std::string stunde);
 	void deleteVeranstalterForeign(std::string id);
 	void updateStandort(std::string tag, std::string stunde);
 	void incarbeitszeit(std::string tag, std::string stunde, std::string amount);
 	void insertVeranstaltungenIntoPlan(std::string cap, std::string tag, std::string stunde);
-	void insertVeranstaltungIntoPlanHandler();
+	void insertVeranstaltungIntoPlanHandler( );
 	void insertAgain(std::string tag, std::string stunde);
-	std::string checkPlanSize();
+	std::string checkPlanSize( );
 	void versendeEmails( );
 
 public:
