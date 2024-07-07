@@ -51,7 +51,7 @@ void DBPlan::vertretung(std::string tag, std::string stunde, std::string dauer) 
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
 
     }
 }
@@ -86,7 +86,7 @@ void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
 
     }
 }
@@ -102,7 +102,7 @@ void DBPlan::meldeGesund(std::string id) {
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -132,7 +132,7 @@ void DBPlan::deleteVeranstalterForeign(std::string id) {
         }
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -150,7 +150,7 @@ void DBPlan::deleteVeranstalter(std::string id) {
         versendeEmails();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -168,7 +168,7 @@ void DBPlan::deleteVeranstaltung(std::string name) {
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 
 }
@@ -183,7 +183,7 @@ void DBPlan::hinzufuegenVeranstaltung(std::string name, std::string dauer, std::
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 
 }
@@ -198,7 +198,7 @@ void DBPlan::hinzufuegenVeranstalter(std::string email, std::string name, std::s
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+       fmt::print(e.what());
     }
 
 }
@@ -213,7 +213,7 @@ void DBPlan::deleteStudent(std::string id) {
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 
 }
@@ -229,7 +229,7 @@ void DBPlan::hinzufuegenStudent(std::string email, std::string name, std::string
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 
 
@@ -251,7 +251,7 @@ std::string DBPlan::getDauer(std::string tag, std::string stunde) {
         return response[0][0].c_str();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -269,7 +269,7 @@ void DBPlan::addFirstOfDayTwo(std::string tag) {
       
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -292,7 +292,7 @@ void DBPlan::addTwoHour(std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -307,7 +307,7 @@ void DBPlan::addFirstOfDayFour(std::string tag) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -328,7 +328,7 @@ void DBPlan::addFourHour(std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -346,7 +346,7 @@ void DBPlan::upperHour(std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -363,7 +363,7 @@ void DBPlan::updateStandort(std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -381,7 +381,7 @@ void DBPlan::incarbeitszeit(std::string tag, std::string stunde, std::string amo
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -409,7 +409,7 @@ void DBPlan::insertVeranstaltungenIntoPlan(std::string cap, std::string tag, std
         worker.commit();
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -428,7 +428,7 @@ void DBPlan::insertAgain(std::string tag, std::string stunde) {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+       fmt::print(e.what());
     }
 }
 
@@ -500,7 +500,7 @@ void DBPlan::createPlan() {
         }
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 
 }
@@ -521,7 +521,7 @@ std::string DBPlan::checkPlanSize() {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
@@ -560,11 +560,12 @@ std::vector<std::string> DBPlan::getPlan() {
 
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        fmt::print(e.what());
     }
 }
 
 void DBPlan::versendeEmails() {
     //Email an alle Nutzer
-    std::cout << "Der Einsatzplan wurde geupdated" << std::endl;
+	fmt::print("Der Einsatzplan wurde geupdated");
+  
 }
