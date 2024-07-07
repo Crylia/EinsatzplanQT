@@ -10,7 +10,11 @@ inline static const std::map<std::string, std::string>& load_config( ) {
 	static bool is_loaded{ false };
 	static std::string fn{ "" };
 
+#if defined(_WIN32) || defined(_WIN64)
+	std::string filename = std::string(std::getenv("USER")) + "\\config.cfg";
+#elif defined(__unix__) || defined(__APPLE__)
 	std::string filename = std::string(std::getenv("HOME")) + "/Dokumente/git/EinsatzplanQT/config.cfg";
+#endif
 
 	if (!is_loaded || fn != filename) {
 		std::ifstream file(filename);

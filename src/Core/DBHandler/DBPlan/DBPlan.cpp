@@ -30,11 +30,13 @@ void DBPlan::vertretung(std::string tag, std::string stunde) {
 		pqxx::work worker(connectionObject);
 
 		std::string query =
-			"UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = "
-			"(SELECT ID FROM Veranstalter WHERE ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2) "
-			"AND ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $3 AND tag = $4) LIMIT 1) WHERE uhrzeit_id = $5 AND tag = $6; ";
+			R"(UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID =
+			(SELECT ID FROM Veranstalter WHERE ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2 LIMIT 1)
+			AND ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $3 AND tag = $4 LIMIT 1)
+			AND ID IN (SELECT ID FROM Veranstalter WHERE ID != $5 AND ID != $6 LIMIT 1))
+			WHERE uhrzeit_id = $7 AND tag = $8;)";
 
-		pqxx::result response = worker.exec_params(query, prevStunde, prevTag, nextStunde, nextTag, stunde, tag);
+		pqxx::result response = worker.exec_params(query, prevStunde, prevTag, nextStunde, nextTag, stunde, tag, stunde, tag);
 
 		worker.commit( );
 		if (response.affected_rows( ) == 0) {
@@ -64,13 +66,12 @@ void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
 	try {
 		pqxx::work worker(connectionObject);
 		std::string query =
-			"UPDATE Veranstalter SET krank = TRUE WHERE ID = $1;";
+			"UPDATE Veranstalter SET krank = TRUE, tag = $1, uhrzeit_id = $2 WHERE ID = $3;";
 
-		pqxx::result response = worker.exec_params(query, id);
+		pqxx::result response = worker.exec_params(query, tag, stunde, id);
 		worker.commit( );
 
 		vertretung(tag, stunde);
-		meldeGesund(id);
 		versendeEmails( );
 	}
 	catch (const std::exception& e) {
@@ -94,10 +95,8 @@ void DBPlan::meldeGesund(std::string id) {
 void DBPlan::deleteVeranstalterForeign(std::string id) {
 	try {
 		pqxx::work worker(connectionObject);
-		std::string query = "SELECT tag, uhrzeit_id FROM Veranstalter_Veranstaltung_Uhrzeit WHERE Veranstalter_ID = $1; ";
-
-		//get times where id in plan
-		//for each search vertretung
+		std::string query =
+			"SELECT tag, uhrzeit_id FROM Veranstalter_Veranstaltung_Uhrzeit WHERE Veranstalter_ID = $1; ";
 
 		pqxx::result response = worker.exec_params(query, id);
 		worker.commit( );
@@ -107,6 +106,11 @@ void DBPlan::deleteVeranstalterForeign(std::string id) {
 		for (int i = 0; i < response.affected_rows( ); i++) {
 			tag = response[i][0].c_str( );
 			stunde = response[i][1].c_str( );
+			std::string query2 =
+				"UPDATE Veranstalter SET krank = TRUE, tag = $1, uhrzeit_id = $2 WHERE ID = $3;";
+
+			pqxx::result response = worker.exec_params(query, tag, stunde, id);
+			worker.commit( );
 			vertretung(tag, stunde);
 			if (getDauer(tag, stunde) == "4")
 				i++;
@@ -118,9 +122,8 @@ void DBPlan::deleteVeranstalterForeign(std::string id) {
 }
 
 void DBPlan::deleteVeranstalter(std::string id) {
-	deleteVeranstalterForeign(id);
-
 	try {
+		deleteVeranstalterForeign(id);
 		pqxx::work worker(connectionObject);
 		std::string query = "DELETE FROM Veranstalter WHERE ID = $1;";
 
@@ -163,7 +166,7 @@ void DBPlan::hinzufuegenVeranstalter(std::string email, std::string name, std::s
 	try {
 		pqxx::work worker(connectionObject);
 		std::string query =
-			"INSERT INTO Veranstaltung (email, name, pw, admin) VALUES ($1, $2, $3, $4);";
+			"INSERT INTO Veranstalter (email, name, passwort, admin) VALUES ($1, $2, $3, $4);";
 		worker.exec_params(query, email, name, pw, admin);
 		worker.commit( );
 	}
@@ -445,11 +448,11 @@ std::vector<std::string> DBPlan::getPlan( ) {
 		pqxx::work worker(connectionObject);
 
 		std::string query =
-			R"(SELECT tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, o.raum, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit 
+			R"(SELECT Veranstalter_Veranstaltung_Uhrzeit.tag, u.anfangszeit, u.endzeit, o.ort, o.name, v.name, o.raum, v.ID FROM Veranstalter_Veranstaltung_Uhrzeit 
 			JOIN Veranstalter v ON Veranstalter_Veranstaltung_Uhrzeit.veranstalter_ID = v.ID
 			JOIN Uhrzeit u ON Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID = u.ID
 			JOIN Veranstaltung o ON Veranstalter_Veranstaltung_Uhrzeit.veranstaltung_ID = o.ID 
-			ORDER BY tag, uhrzeit_ID;)";
+			ORDER BY Veranstalter_Veranstaltung_Uhrzeit.tag, Veranstalter_Veranstaltung_Uhrzeit.uhrzeit_ID;)";
 
 		pqxx::result response = worker.exec(query);
 		worker.commit( );

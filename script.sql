@@ -34,6 +34,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+   CREATE TABLE Uhrzeit ( 
+            ID SERIAL PRIMARY KEY, 
+            anfangszeit TIME NOT NULL, 
+            endzeit TIME NOT NULL );
+
 CREATE TABLE Veranstalter (
     ID INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'), 
     name VARCHAR(30),
@@ -42,7 +47,9 @@ CREATE TABLE Veranstalter (
     arbeitszeit INTEGER DEFAULT 0,
     standort VARCHAR(30) DEFAULT random_between_two(),
     krank BOOLEAN DEFAULT FALSE,
-    admin BOOLEAN NOT NULL DEFAULT FALSE
+    admin BOOLEAN NOT NULL DEFAULT FALSE,
+    uhrzeit_id INTEGER REFERENCES Uhrzeit(ID),
+    tag INTEGER
 );
 
 
@@ -68,10 +75,6 @@ CREATE TABLE Veranstalter (
 
 
 
-   CREATE TABLE Uhrzeit ( 
-            ID SERIAL PRIMARY KEY, 
-            anfangszeit TIME NOT NULL, 
-            endzeit TIME NOT NULL );
 
 
 
@@ -90,6 +93,8 @@ CREATE TABLE Veranstalter (
         veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
         PRIMARY KEY(uhrzeit_ID, tag)
     );
+
+
 
 INSERT INTO Veranstalter (name, email, passwort, admin) VALUES
 ('Davids', 'admin@example.com', 'password123', TRUE),
@@ -117,3 +122,7 @@ INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES
 ('B', '208', 'WEB', 2),
 ('A', '109', 'BVA', 2),
 ('B', '210', 'MA1', 2);
+
+
+
+
