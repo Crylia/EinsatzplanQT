@@ -90,3 +90,30 @@ CREATE TABLE Veranstalter (
         veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
         PRIMARY KEY(uhrzeit_ID, tag)
     );
+
+INSERT INTO Veranstalter (name, email, passwort, admin) VALUES
+('tech_guru', 'admin@example.com', 'password123', TRUE),
+('code_master', 'user1@example.com', 'password1', FALSE),
+('binary_hero', 'user2@example.com', 'password2', FALSE),
+('debug_ninja', 'user3@example.com', 'password3', FALSE),
+('data_wizard', 'user4@example.com', 'password4', FALSE),
+('script_samurai', 'user5@example.com', 'password5', FALSE),
+('dev_genius', 'user6@example.com', 'password6', FALSE),
+('cyber_maven', 'user7@example.com', 'password7', FALSE),
+('net_knight', 'user8@example.com', 'password8', FALSE),
+('bit_boss', 'user9@example.com', 'password9', FALSE),
+('sys_sensei', 'user10@example.com', 'password10', FALSE),
+('crypto_champ', 'user11@example.com', 'password11', FALSE);
+
+
+INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES 
+('A', '101', 'GDI', 2),
+('B', '202', 'ALD', 4),
+('A', '103', 'ITS', 2),
+('B', '204', 'BSY', 4),
+('A', '105', 'PE1', 2),
+('B', '206', 'THI', 4),
+('A', '107', 'DBS', 2),
+('B', '208', 'WEB', 2),
+('A', '109', 'BVA', 2),
+('B', '210', 'MA1', 2);
