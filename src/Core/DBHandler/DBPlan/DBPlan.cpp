@@ -3,63 +3,124 @@
 DBPlan::DBPlan(std::string connStr) : DBHandler(connStr) { };
 
 void DBPlan::vertretung(std::string tag, std::string stunde) {
-	try {
-		std::string dauer = getDauer(tag, stunde);
-		std::string prevStunde = std::to_string(std::stoi(stunde) - 1);
-		std::string cap = std::to_string(18 - std::stoi(dauer));
-		std::string nextStunde;
-		std::string nextTag = tag;
-		std::string prevTag = tag;
-		(dauer == "4") ? nextStunde = std::to_string(std::stoi(stunde) + 2) :
-			nextStunde = std::to_string(std::stoi(stunde) + 1);
+    try {
+        std::string dauer = getDauer(tag, stunde);
+        std::string prevStunde = std::to_string(std::stoi(stunde) - 1);
+        std::string cap = std::to_string(18 - std::stoi(dauer));
+        std::string nextStunde;
+        std::string nextTag = tag;
+        std::string prevTag = tag;
+        if (dauer == "4") {
+           
+           nextStunde = std::to_string(std::stoi(stunde) + 2);        
+        }
+        else {
+           nextStunde = std::to_string(std::stoi(stunde) + 1);
+           
+        }
+        
+        if (prevStunde == "0") {
+            prevStunde = "5";
+            prevTag = std::to_string(std::stoi(tag) - 1);
+            if (prevTag == "0") {
+                prevTag = "5";
+            }
+        }
 
-		if (prevStunde == "0") {
-			prevStunde = "5";
-			prevTag = std::to_string(std::stoi(tag) - 1);
-			if (prevTag == "0")
-				prevTag = "5";
-		}
+        if (nextStunde == "6") {
+            nextStunde = "1";
+            nextTag = std::to_string(std::stoi(tag)+1);
+            if (nextTag == "6") {
+                nextTag = "1";
+            }
+        }
 
-		if (nextStunde == "6") {
-			nextStunde = "1";
-			nextTag = std::to_string(std::stoi(tag) + 1);
-			if (nextTag == "6")
-				nextTag = "1";
-		}
+        pqxx::work worker(connectionObject);
+        pqxx::result response;
+        int i = 1;
+        while (i != 0) {
+            std::string query0 =
+                R"(SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE veranstalter_ID IS NOT NULL AND uhrzeit_id = $1 AND tag = $2;)";
+            response = worker.exec_params(query0, prevStunde, prevTag);
+            worker.commit();
+            
+            std::cout << response.size() << std::endl;
+            if (response.size() != 0) {
+                i = 0;
+                break;
+            }
+            prevStunde = std::to_string(std::stoi(prevStunde) - 1);
+            if (prevStunde == "0") {
+                prevStunde = "5";
+                prevTag = std::to_string(std::stoi(prevTag) - 1);
+                if (prevTag == "0") {
+                    prevTag = "5";
+                }
+            }          
+        }
+        
 
-		pqxx::work worker(connectionObject);
+        pqxx::result res;
+        i = 1;
+        while (i != 0) {
+            
+            std::string query00 =
+                R"(SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE veranstalter_ID IS NOT NULL AND uhrzeit_id = $1 AND tag = $2;)";
+            res = worker.exec_params(query00, nextStunde, nextTag);
+            worker.commit();
 
-		std::string query =
-			R"(UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID =
-			(SELECT ID FROM Veranstalter WHERE ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2 LIMIT 1)
-			AND ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $3 AND tag = $4 LIMIT 1)
-			AND ID IN (SELECT ID FROM Veranstalter WHERE ID != $5 AND ID != $6 LIMIT 1))
-			WHERE uhrzeit_id = $7 AND tag = $8;)";
+            if (response.size() != 0) {
+                i = 0;
+                break;
+            }
+            nextStunde = std::to_string(std::stoi(nextStunde) + 1);
+            if (nextStunde == "6") {
+                nextStunde = "1";
+                nextTag = std::to_string(std::stoi(nextTag) + 1);
+                if (nextTag == "6") {
+                    nextTag = "1";
+                }
+            }         
+        } 
+         
+     
+        std::string query =
+            R"(UPDATE Veranstalter_Veranstaltung_Uhrzeit SET Veranstalter_ID = 
+            (SELECT ID FROM Veranstalter WHERE ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $1 AND tag = $2 LIMIT 1)
+            AND ID != (SELECT Veranstalter_ID FROM Veranstalter_Veranstaltung_Uhrzeit WHERE uhrzeit_id = $3 AND tag = $4 LIMIT 1)
+            AND uhrzeit_id != $5 AND tag != $6 LIMIT 1) WHERE uhrzeit_id = $7 AND tag = $8;)";
+      
+        response = worker.exec_params(query, prevStunde, prevTag, nextStunde, nextTag, stunde, tag, stunde, tag);
+       
+        worker.commit();
 
-		pqxx::result response = worker.exec_params(query, prevStunde, prevTag, nextStunde, nextTag, stunde, tag, stunde, tag);
+        if (response.affected_rows() == 0) {
+            meldeGesund(tag, stunde);
+            std::string query2 =
+                "DELETE FROM Veranstalter_Veranstaltung_Uhrzeit WHERE tag = $1 AND uhrzeit_id = $2";
+            worker.exec_params(query2, tag, stunde);
+            worker.commit();
 
-		worker.commit( );
-		if (response.affected_rows( ) == 0) {
-			std::string query2 =
-				"DELETE FROM Veranstalter_Veranstaltung_Uhrzeit WHERE tag = $1 and uhrzeit_id = $2";
-			worker.exec_params(query2, tag, stunde);
-			worker.commit( );
+            if (dauer == "4") {
+                std::string query3 =
+                    "DELETE FROM Veranstalter_Veranstaltung_Uhrzeit WHERE tag = $1 AND uhrzeit_id = $2";
+                worker.exec_params(query3, tag, nextStunde);
+                worker.commit();
+            }
+        }
+        else {
+            incarbeitszeit(tag, stunde, dauer);
+            if (dauer == "4") {
+                upperHour(tag, stunde);
+            }
+        }
+        
 
-			if (dauer == "4") {
-				std::string query3 =
-					"DELETE FROM Veranstalter_Veranstaltung_Uhrzeit WHERE tag = $1 and uhrzeit_id = $2";
-				worker.exec_params(query3, tag, nextStunde);
-				worker.commit( );
-			}
-		} else {
-			incarbeitszeit(tag, stunde, dauer);
-			if (dauer == "4")
-				upperHour(tag, stunde);
-		}
-	}
-	catch (const std::exception& e) {
-		fmt::println(e.what( ));
-	}
+    }
+    catch (const std::exception& e) {
+        fmt::println(e.what( ));
+
+    }
 }
 
 void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
@@ -68,7 +129,7 @@ void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
 		std::string query =
 			"UPDATE Veranstalter SET krank = TRUE, tag = $1, uhrzeit_id = $2 WHERE ID = $3;";
 
-		pqxx::result response = worker.exec_params(query, tag, stunde, id);
+		worker.exec_params(query, tag, stunde, id);
 		worker.commit( );
 
 		vertretung(tag, stunde);
@@ -79,10 +140,10 @@ void DBPlan::meldeKrank(std::string id, std::string tag, std::string stunde) {
 	}
 }
 
-void DBPlan::meldeGesund(std::string id) {
+void DBPlan::meldeGesund(std::string tag, std::string stunde) {
 	try {
 		pqxx::work worker(connectionObject);
-		std::string query = "UPDATE Veranstalter SET krank = FALSE WHERE ID = $1;";
+		std::string query = "UPDATE Veranstalter SET krank = FALSE, uhrzeit_ID = 0, tag = 0 WHERE tag = $1 AND uhrzeit_id = $2;";
 
 		worker.exec_params(query, id);
 		worker.commit( );
