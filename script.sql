@@ -48,8 +48,8 @@ CREATE TABLE Veranstalter (
     standort VARCHAR(30) DEFAULT random_between_two(),
     krank BOOLEAN DEFAULT FALSE,
     admin BOOLEAN NOT NULL DEFAULT FALSE,
-    uhrzeit_id INTEGER REFERENCES Uhrzeit(ID),
-    tag INTEGER
+    uhrzeit_id INTEGER DEFAULT(0),
+    tag INTEGER DEFAULT(0)
 );
 
 
