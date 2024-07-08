@@ -14,7 +14,7 @@ DROP SEQUENCE global_id_seq;
 
 CREATE SEQUENCE global_id_seq START WITH 1000000 INCREMENT BY 1;
 
-CREATE TABLE Studenten (
+CREATE TABLE IF NOT EXISTS Studenten (
     matrikelnummer INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'),
     name VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
@@ -34,10 +34,11 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-   CREATE TABLE Uhrzeit ( 
-            ID SERIAL PRIMARY KEY, 
-            anfangszeit TIME NOT NULL, 
-            endzeit TIME NOT NULL );
+CREATE TABLE Uhrzeit ( 
+    ID SERIAL PRIMARY KEY, 
+    anfangszeit TIME NOT NULL, 
+    endzeit TIME NOT NULL 
+);
 
 CREATE TABLE Veranstalter (
     ID INTEGER PRIMARY KEY DEFAULT nextval('global_id_seq'), 
@@ -45,15 +46,8 @@ CREATE TABLE Veranstalter (
     email VARCHAR(30),
     passwort VARCHAR(30),
     arbeitszeit INTEGER DEFAULT 0,
-    standort VARCHAR(30) DEFAULT random_between_two(),
-    krank BOOLEAN DEFAULT FALSE,
-    admin BOOLEAN NOT NULL DEFAULT FALSE,
-    uhrzeit_id INTEGER DEFAULT(0),
-    tag INTEGER DEFAULT(0)
+    admin BOOLEAN NOT NULL DEFAULT FALSE
 );
-
-
-
 
             
  CREATE VIEW studenten_veranstalter AS 
@@ -65,36 +59,108 @@ CREATE TABLE Veranstalter (
 
  CREATE TABLE Veranstaltung ( 
             ID SERIAL PRIMARY KEY, 
-            ort VARCHAR(30) NOT NULL, 
+            ort VARCHAR(1) DEFAULT random_between_two(), 
             raum INTEGER NOT NULL, 
-            name VARCHAR(90) NOT NULL,
+            name VARCHAR(3) NOT NULL,
             dauer INTEGER NOT NULL,
             used INTEGER DEFAULT(0)
             );
 
+CREATE TABLE StundenImPlan(
+    uhrzeit_ID INTEGER REFERENCES Uhrzeit(ID),
+    tag INTEGER NOT NULL,
+    veranstalter_ID INTEGER REFERENCES Veranstalter(ID) ON DELETE CASCADE,
+    veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
+    PRIMARY KEY(uhrzeit_ID, tag)
+);
+
+CREATE TABLE Krankmeldung(
+    uhrzeit_id INTEGER REFERENCES StundenImPlan(uhrzeit_ID),
+    tag INTEGER REFERENCES StundenImPlan(tag),
+    veranstalter_id INTEGER REFERENCES StundenImPlan(veranstalter_ID),
+    PRIMARY KEY (uhrzeit_ID,tag,veranstalter_id)
+)
+
+
+CREATE OR REPLACE FUNCTION handle_veranstalter_update() RETURNS TRIGGER AS $$
+DECLARE
+    neuer_veranstalter INTEGER;
+BEGIN
+    -- Wenn die Veranstalter_ID auf NULL gesetzt wird oder ein Veranstalter gelöscht wird
+    IF TG_OP = 'UPDATE' AND NEW.veranstalter_ID IS NULL THEN
+        -- Eintrag in die Krankmeldung
+        INSERT INTO Krankmeldung (uhrzeit_ID, tag, veranstalter_id) 
+        VALUES (OLD.uhrzeit_ID, OLD.tag, OLD.veranstalter_ID);
+    ELSIF TG_OP = 'DELETE' THEN
+        -- Eintrag in die Krankmeldung für jede betroffene Stunde
+        INSERT INTO Krankmeldung (uhrzeit_ID, tag, veranstalter_id)
+        SELECT uhrzeit_ID, tag, OLD.ID FROM StundenImPlan WHERE veranstalter_ID = OLD.ID;
+    END IF;
+
+    -- Finde den Veranstalter mit den wenigsten Arbeitsstunden,
+    -- der am selben Tag keine Veranstaltung in einer anderen Uhrzeit an einem anderen Ort hat
+    SELECT ID INTO neuer_veranstalter
+    FROM Veranstalter
+    WHERE ID NOT IN (
+        SELECT veranstalter_ID FROM StundenImPlan
+        WHERE tag = OLD.tag
+        AND uhrzeit_ID != OLD.uhrzeit_ID
+        AND veranstaltung_ID IN (
+            SELECT ID FROM Veranstaltung WHERE ort != (
+                SELECT ort FROM Veranstaltung WHERE ID = NEW.veranstaltung_ID
+            )
+        )
+    )
+    ORDER BY arbeitszeit ASC
+    LIMIT 1;
+
+    -- Wenn ein neuer Veranstalter gefunden wurde
+    IF neuer_veranstalter IS NOT NULL THEN
+        IF TG_OP = 'UPDATE' THEN
+            NEW.veranstalter_ID := neuer_veranstalter;
+        ELSIF TG_OP = 'DELETE' THEN
+            UPDATE StundenImPlan
+            SET veranstalter_ID = neuer_veranstalter
+            WHERE veranstalter_ID = OLD.ID;
+        END IF;
+        -- Update der Arbeitszeit des neuen Veranstalters
+        UPDATE Veranstalter
+        SET arbeitszeit = arbeitszeit + (
+            SELECT dauer FROM Veranstaltung WHERE ID = (
+                CASE WHEN TG_OP = 'UPDATE' THEN NEW.veranstaltung_ID ELSE OLD.ID END
+            )
+        )
+        WHERE ID = neuer_veranstalter;
+    ELSE
+        IF TG_OP = 'DELETE' THEN
+            UPDATE StundenImPlan
+            SET veranstalter_ID = NULL
+            WHERE veranstalter_ID = OLD.ID;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_handle_veranstalter_update
+BEFORE UPDATE ON StundenImPlan
+FOR EACH ROW
+EXECUTE FUNCTION handle_veranstalter_update();
+
+CREATE TRIGGER trg_handle_veranstalter_delete
+BEFORE DELETE ON Veranstalter
+FOR EACH ROW
+EXECUTE FUNCTION handle_veranstalter_update();
 
 
 
-
-
-
-    INSERT INTO Uhrzeit (anfangszeit, endzeit) VALUES 
-            ('08:00:00', '10:00:00'), 
-            ('10:00:00', '12:00:00'), 
-            ('12:00:00', '14:00:00'), 
-            ('14:00:00', '16:00:00'), 
-            ('16:00:00', '18:00:00'); 
-
-
-    CREATE TABLE Veranstalter_Veranstaltung_Uhrzeit (
-        uhrzeit_ID INTEGER REFERENCES Uhrzeit(ID),
-        tag INTEGER NOT NULL,
-        veranstalter_ID INTEGER REFERENCES Veranstalter(ID) ON DELETE CASCADE,
-        veranstaltung_ID INTEGER REFERENCES Veranstaltung(ID) ON DELETE CASCADE,
-        PRIMARY KEY(uhrzeit_ID, tag)
-    );
-
-
+INSERT INTO Uhrzeit (anfangszeit, endzeit) VALUES 
+    ('08:00:00', '10:00:00'), 
+    ('10:00:00', '12:00:00'), 
+    ('12:00:00', '14:00:00'), 
+    ('14:00:00', '16:00:00'), 
+    ('16:00:00', '18:00:00'); 
 
 INSERT INTO Veranstalter (name, email, passwort, admin) VALUES
 ('Davids', 'admin@example.com', 'password123', TRUE),
@@ -122,7 +188,3 @@ INSERT INTO Veranstaltung (ort, raum, name, dauer) VALUES
 ('B', '208', 'WEB', 2),
 ('A', '109', 'BVA', 2),
 ('B', '210', 'MA1', 2);
-
-
-
-

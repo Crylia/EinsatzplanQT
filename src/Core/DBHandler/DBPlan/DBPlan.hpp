@@ -6,6 +6,8 @@
 
 #include "../DBHandler/DBHandler.hpp"
 
+
+
 class DBPlan : public DBHandler {
 private:
 	//Functions needed for creation and updating of the plan
@@ -42,7 +44,7 @@ public:
 	 *
 	 * @param id
 	 */
-	void meldeGesund(std::string tag, std::string stunde);
+	//void meldeGesund(std::string tag, std::string stunde);
 
 	/**
 	 * @brief Deletes Veranstaltung from relation Veranstaltung and from Einsatzplan
@@ -105,5 +107,7 @@ public:
 	 *
 	 * @return std::vector<std::string>
 	 */
+
 	std::vector<std::string> getPlan( );
 };
+

@@ -44,7 +44,7 @@ void DBPlan::vertretung(std::string tag, std::string stunde) {
             response = worker.exec_params(query0, prevStunde, prevTag);
             worker.commit();
             
-            std::cout << response.size() << std::endl;
+            fmt::print("{0}\n",response.size());
             if (response.size() != 0) {
                 i = 0;
                 break;
