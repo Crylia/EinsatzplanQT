@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS Veranstalter(
 CREATE TABLE IF NOT EXISTS StundeImPlan (
   uhrzeit INTEGER REFERENCES Uhrzeit(ID),
   tag INTEGER NOT NULL,
-  veranstaltung VARCHAR(3) REFERENCES Veranstaltung(name),
-  veranstalter INTEGER REFERENCES Veranstalter(ID),
+  veranstaltung VARCHAR(3) REFERENCES Veranstaltung(name) ON DELETE SET NULL,
+  veranstalter INTEGER REFERENCES Veranstalter(ID)  ON DELETE SET NULL,
   PRIMARY KEY(uhrzeit, tag)
 );
 
@@ -67,13 +67,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger to call the above function
 CREATE TRIGGER trg_delete_stundeimplan_for_veranstaltung
 AFTER DELETE ON Veranstaltung
 FOR EACH ROW
 EXECUTE FUNCTION delete_stundeimplan_for_veranstaltung();
 
--- Function to update StundeImPlan when Veranstalter is deleted
 CREATE OR REPLACE FUNCTION update_stundeimplan_for_veranstalter()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -131,16 +129,32 @@ BEGIN
     FOR u_row IN SELECT * FROM Uhrzeit LOOP
         -- Loop through each available Veranstaltung
         FOR v_row IN SELECT * FROM Veranstaltung WHERE used_in_plan = 0 LOOP
-            -- Find an available Veranstalter
+            -- Find an available Veranstalter with matching ort and not scheduled in the same tag and uhrzeit
             SELECT * INTO available_veranstalter
-            FROM Veranstalter
-            WHERE arbeitszeit + v_row.dauer <= 18
-            ORDER BY arbeitszeit ASC
+            FROM Veranstalter v
+            WHERE v.arbeitszeit + v_row.dauer <= 18
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM StundeImPlan sp
+                  JOIN Veranstaltung va ON sp.veranstaltung = va.name
+                  WHERE sp.uhrzeit = u_row.ID
+                    AND sp.tag = random_day
+                    AND sp.veranstalter = v.ID
+              )
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM StundeImPlan prev_sp
+                  JOIN Veranstaltung prev_va ON prev_sp.veranstaltung = prev_va.name
+                  WHERE prev_sp.uhrzeit = u_row.ID - 1
+                    AND prev_sp.tag = random_day
+                    AND prev_sp.veranstalter = v.ID
+                    AND prev_va.ort <> v_row.ort  -- Ensure different ort for previous hour
+              )
+            ORDER BY v.arbeitszeit ASC
             LIMIT 1;
 
             IF FOUND THEN
                 -- Check if there is already an event scheduled for this tag and uhrzeit combination
-                
                 random_day = random_between_days();
                 IF NOT EXISTS (
                     SELECT 1
@@ -154,6 +168,25 @@ BEGIN
                     -- Update the used_in_plan flag and arbeitszeit
                     UPDATE Veranstaltung SET used_in_plan = used_in_plan + 1 WHERE name = v_row.name;
                     UPDATE Veranstalter SET arbeitszeit = arbeitszeit + v_row.dauer WHERE ID = available_veranstalter.ID;
+
+                    -- If the duration is 4, also insert for the next time slot
+                    IF v_row.dauer = 4 THEN
+                        -- Ensure the next time slot is within the range
+                        IF EXISTS (SELECT 1 FROM Uhrzeit WHERE ID = u_row.ID + 1) THEN
+                            -- Check if the next time slot is free
+                            IF NOT EXISTS (
+                                SELECT 1
+                                FROM StundeImPlan
+                                WHERE uhrzeit = u_row.ID + 1 AND tag = random_day
+                            ) THEN
+                                INSERT INTO StundeImPlan (uhrzeit, tag, veranstaltung, veranstalter)
+                                VALUES (u_row.ID + 1, random_day, v_row.name, available_veranstalter.ID);
+
+                                -- Mark the second part as used in the plan
+                                UPDATE Veranstaltung SET used_in_plan = used_in_plan + 1 WHERE name = v_row.name;
+                            END IF;
+                        END IF;
+                    END IF;
                 END IF;
             END IF;
         END LOOP;
@@ -161,7 +194,6 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
 CREATE TRIGGER trg_generate_plan
 AFTER INSERT ON Veranstaltung
 FOR EACH STATEMENT
@@ -173,7 +205,7 @@ DECLARE
     new_veranstalter_id INTEGER;
     v_name VARCHAR(3);
 BEGIN
-    -- Find a new veranstalter for the same stundeImPlan
+    -- Find the name of the Veranstaltung for the same stundeImPlan
     SELECT veranstaltung.name INTO v_name
     FROM Veranstaltung
     WHERE name = (SELECT veranstaltung FROM StundeImPlan WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag);
@@ -185,12 +217,12 @@ BEGIN
         WHERE sp.uhrzeit = NEW.stundeImPlan_uhrzeit - 1
           AND sp.tag = NEW.stundeImPlan_tag
     )
-    SELECT ID INTO new_veranstalter_id
+    SELECT v.ID INTO new_veranstalter_id
     FROM Veranstalter v
     JOIN StundeImPlan sp ON v.ID = sp.veranstalter
     JOIN Veranstaltung va ON sp.veranstaltung = va.name
-    LEFT JOIN PreviousHour ph ON sp.uhrzeit = NEW.stundeImPlan_uhrzeit AND sp.tag = NEW.stundeImPlan_tag - 1
-    WHERE arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name) <= 18
+    LEFT JOIN PreviousHour ph ON v.ID = ph.veranstalter
+    WHERE v.arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name) <= 18
       AND NOT EXISTS (
           SELECT 1
           FROM Krank k
@@ -198,30 +230,34 @@ BEGIN
             AND k.stundeImPlan_uhrzeit = NEW.stundeImPlan_uhrzeit
             AND k.stundeImPlan_tag = NEW.stundeImPlan_tag
       )
-      AND (ph.veranstalter IS NULL OR v.ID <> ph.veranstalter OR va.ort = ph.ort)
-    ORDER BY arbeitszeit ASC
+      AND (ph.veranstalter IS NULL OR ph.veranstalter <> (
+        SELECT v.ID
+            FROM Veranstalter v
+            JOIN StundeImPlan sp ON v.ID = sp.veranstalter
+            JOIN Veranstaltung vaa ON sp.veranstaltung = vaa.name
+            WHERE sp.uhrzeit = NEW.stundeImPlan_uhrzeit
+            AND sp.tag = NEW.stundeImPlan_tag
+            AND vaa.ort = va.ort
+      ))
+    ORDER BY v.arbeitszeit ASC
     LIMIT 1;
 
-    SELECT ID INTO new_veranstalter_id
-    FROM Veranstalter v
-    WHERE arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name) <= 18
-      AND NOT EXISTS (
-        SELECT 1
-        FROM Krank k
-        WHERE k.veranstalter = v.ID
-        AND k.stundeImPlan_uhrzeit = NEW.stundeImPlan_uhrzeit
-        AND k.stundeImPlan_tag = NEW.stundeImPlan_tag
-    );
+    -- Check if a new veranstalter was found
+    IF new_veranstalter_id IS NOT NULL THEN
+        UPDATE Veranstalter
+        SET arbeitszeit = arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name)
+        WHERE ID = new_veranstalter_id;
 
-
-    UPDATE Veranstalter
-    SET arbeitszeit = arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name)
-    WHERE ID = new_veranstalter_id;
-
-    -- Update the StundeImPlan with the replacement or NULL
-    UPDATE StundeImPlan
-    SET veranstalter = COALESCE(new_veranstalter_id, NULL)
-    WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag;
+        -- Update the StundeImPlan with the replacement
+        UPDATE StundeImPlan
+        SET veranstalter = new_veranstalter_id
+        WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag;
+    ELSE
+        -- If no suitable veranstalter is found, set veranstalter to NULL
+        UPDATE StundeImPlan
+        SET veranstalter = NULL
+        WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag;
+    END IF;
 
     RETURN NEW;
 END;
@@ -231,6 +267,57 @@ CREATE TRIGGER trg_handle_krank_insert
 AFTER INSERT ON Krank
 FOR EACH ROW
 EXECUTE FUNCTION handle_krank_insert();
+
+CREATE OR REPLACE FUNCTION handle_veranstalter_deletion() RETURNS TRIGGER AS $$
+DECLARE
+    new_veranstalter RECORD;
+    affected_row RECORD;
+BEGIN
+    FOR affected_row IN
+        SELECT * FROM StundeImPlan WHERE veranstalter = OLD.id
+    LOOP
+        -- Find a new suitable Veranstalter
+        SELECT * INTO new_veranstalter
+        FROM Veranstalter v
+        WHERE v.arbeitszeit + (SELECT dauer FROM Veranstaltung va WHERE va.name = affected_row.veranstaltung) <= 18
+          AND NOT EXISTS (
+              SELECT 1
+              FROM Krank k
+              WHERE k.veranstalter = v.ID
+                AND k.stundeImPlan_uhrzeit = affected_row.uhrzeit
+                AND k.stundeImPlan_tag = affected_row.tag
+          )
+          AND NOT EXISTS (
+              SELECT 1
+              FROM StundeImPlan sp
+              JOIN Veranstaltung va ON sp.veranstaltung = va.name
+              WHERE sp.uhrzeit = affected_row.uhrzeit - 1
+                AND sp.tag = affected_row.tag
+                AND sp.veranstalter = v.ID
+                AND va.ort <> (SELECT ort FROM Veranstaltung WHERE name = affected_row.veranstaltung)
+          )
+          AND v.ID <> affected_row.veranstalter
+        ORDER BY v.arbeitszeit ASC
+        LIMIT 1;
+
+        UPDATE StundeImPlan
+        SET veranstalter = new_veranstalter.ID
+        WHERE uhrzeit = affected_row.uhrzeit AND tag = affected_row.tag AND veranstalter = OLD.id;
+
+        UPDATE Veranstalter
+        SET arbeitszeit = arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = affected_row.veranstaltung)
+        WHERE ID = new_veranstalter.ID;
+    END LOOP;
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER before_veranstalter_delete
+BEFORE DELETE ON Veranstalter
+FOR EACH ROW
+EXECUTE FUNCTION handle_veranstalter_deletion();
 
 INSERT INTO Uhrzeit (anfangszeit, endzeit) VALUES 
     ('08:00:00', '10:00:00'), 

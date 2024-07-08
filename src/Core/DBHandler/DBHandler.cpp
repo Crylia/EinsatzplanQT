@@ -68,7 +68,7 @@ bool DBHandler::deleteVeranstalter(const std::string& name) {
 	try {
 		pqxx::work W(*m_dbConnection.get( ));
 		std::string query = fmt::format(
-			"DELETE FROM Veranstalter WHERE name = {}", W.quote(name)
+			"DELETE FROM Veranstalter WHERE id = {}", W.quote(name)
 		);
 		W.exec(query);
 		W.commit( );
@@ -148,7 +148,7 @@ std::vector<std::string> DBHandler::getPlan( ) {
         FROM StundeImPlan SIP
         JOIN Uhrzeit U ON SIP.uhrzeit = U.ID
         JOIN Veranstaltung VA ON SIP.veranstaltung = VA.name
-        JOIN Veranstalter V ON SIP.veranstalter = V.ID
+        LEFT JOIN Veranstalter V ON SIP.veranstalter = V.ID
         ORDER BY U.anfangszeit)";
 		pqxx::result R(N.exec(query));
 
@@ -156,7 +156,7 @@ std::vector<std::string> DBHandler::getPlan( ) {
 			std::string entry = fmt::format(
 				"{},{},{},{},{},{},{},{},{}",
 				row["tag"].c_str( ), row["anfangszeit"].c_str( ), row["endzeit"].c_str( ), row["ort"].c_str( ),
-				row["veranstaltungsname"].c_str( ), row["veranstaltername"].c_str( ), row["raum"].c_str( ), row["veranstalter"].c_str( ), row["dauer"].c_str( )
+				row["veranstaltungsname"].c_str( ), row["veranstaltername"].is_null( ) ? "frei" : row["veranstaltername"].c_str( ), row["raum"].c_str( ), row["veranstalter"].c_str( ), row["dauer"].c_str( )
 			);
 			plan.push_back(entry);
 		}
