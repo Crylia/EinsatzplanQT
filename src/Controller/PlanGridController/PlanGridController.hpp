@@ -7,12 +7,13 @@
 #include <QPushButton>
 
 #include "../../Core/config/config.hpp"
-#include "../../Core/DBHandler/DBHandler/DBHandler.hpp"
+#include "../../Core/DBHandler/DBHandler.hpp"
 
 class PlanGridController : public QObject {
 	Q_OBJECT
 private:
-	std::string m_connectionString;
+	std::unique_ptr<DBHandler> m_dbHandler;
+
 protected:
 	QString weekdays[5];
 	QString times[5];
@@ -22,5 +23,5 @@ public:
 	PlanGridController( );
 
 	QMap<QPair<QString, QString>, QWidget*>* getVeranstaltungen( );
-	void Krankmelden(const int id, const int tag, const int stunde);
+	void Krankmelden(const int id, const int tag, const std::string& uhrzeit);
 };

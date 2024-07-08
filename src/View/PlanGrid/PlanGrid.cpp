@@ -115,7 +115,7 @@ void PlanGrid::populateGrid( ) {
 						planGridController->Krankmelden(
 							id,
 							i + 1,
-							j + 1
+							m_times[j].toStdString( )
 						);
 					}
 					planMap = planGridController->getVeranstaltungen( );

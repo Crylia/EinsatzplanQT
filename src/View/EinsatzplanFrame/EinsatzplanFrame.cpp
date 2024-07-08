@@ -210,6 +210,8 @@ void EinsatzplanFrame::createVeranstaltung( ) {
 		QString campus = dialog.getCampus( );
 		QString time = dialog.getTime( );
 		m_controller->createVeranstaltung(name, raum, campus, time);
+		m_planGrid->setPlanMap(m_planGrid->planGridController->getVeranstaltungen( ));
+		m_planGrid->populateGrid( );
 	}
 }
 

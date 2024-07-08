@@ -17,20 +17,18 @@ PlanGridController::PlanGridController( ) {
 
 	const std::map<std::string, std::string> config = load_config( );
 
-	m_connectionString = fmt::format(
+	m_dbHandler = std::make_unique<DBHandler>(fmt::format(
 		"host={} port={} dbname={} user={} password={}",
 		config.at("DB_HOST"),
 		config.at("DB_PORT"),
 		config.at("DB_NAME"),
 		config.at("DB_USER"),
 		config.at("DB_PASSWORD")
-	);
+	));
 }
 
 QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen( ) {
-	DBHandler* db = new DBHandler(m_connectionString);
-
-	std::vector<std::string> planData = db->getVeranstaltung( );
+	std::vector<std::string> planData = m_dbHandler->getPlan( );
 
 	for (int i = 0; i < 5; ++i)
 		for (int j = 0; j < 5; ++j) {
@@ -118,17 +116,35 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 		)"));
 
 		container->setFixedSize(240, 100);
-		planMap->insert(qMakePair(
-			weekdays[std::stoi(infoVector.at(0)) - 1],
-			QString::fromStdString(infoVector.at(1).erase(5, 8))),
-			container);
+		if (infoVector.at(8) == "4") {
+			planMap->insert(qMakePair(
+				weekdays[std::stoi(infoVector.at(0)) - 1],
+				QString::fromStdString(infoVector.at(1).erase(5, 8))),
+				container);
+
+			std::string originalString = infoVector.at(1);
+			if (originalString.length( ) >= 2) {
+				char secondChar = originalString[1];
+				secondChar += 2;
+				originalString[1] = secondChar;
+			}
+
+			planMap->insert(qMakePair(
+				weekdays[std::stoi(infoVector.at(0)) - 1],
+				QString::fromStdString(originalString)),
+				container);
+		} else {
+
+			planMap->insert(qMakePair(
+				weekdays[std::stoi(infoVector.at(0)) - 1],
+				QString::fromStdString(infoVector.at(1).erase(5, 8))),
+				container);
+		}
 	}
 
 	return planMap;
 }
 
-void PlanGridController::Krankmelden(const int id, int tag, int stunde) {
-	DBHandler db(m_connectionString);
-
-	db.meldeKrank(std::to_string(id), std::to_string(tag), std::to_string(stunde));
+void PlanGridController::Krankmelden(const int id, const int tag, const std::string& uhrzeit) {
+	m_dbHandler->krankmelden(std::to_string(id), uhrzeit, tag);
 }

@@ -3,12 +3,12 @@
 #include <QString>
 #include <fmt/format.h>
 
-#include "../../Core/DBHandler/DBHandler/DBHandler.hpp"
+#include "../../Core/DBHandler/DBHandler.hpp"
 #include "../../Core/config/config.hpp"
 
 class EinsatzplanFrameController {
 private:
-	std::string m_connectionString;
+	std::unique_ptr<DBHandler> m_dbHandler;
 
 protected:
 	QString m_id;
@@ -20,4 +20,5 @@ public:
 	void deleteVeranstaltung(QString veranstaltungsname);
 	void createMember(QString name, QString email, QString passwort, bool admin);
 	void createVeranstaltung(QString name, QString raum, QString campus, QString time);
+
 };
