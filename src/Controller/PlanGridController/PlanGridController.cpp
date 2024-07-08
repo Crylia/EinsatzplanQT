@@ -116,30 +116,53 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 		)"));
 
 		container->setFixedSize(240, 100);
+
 		if (infoVector.at(8) == "4") {
+			QFrame* container2 = new QFrame( );
+
+			container2->setObjectName("container2");
+			container2->setStyleSheet(R"(
+				#container2{
+					background-color: #313131;
+				}
+			)");
+			auto layout2 = new QVBoxLayout(container2);
+			container2->setLayout(layout2);
+
+			QPushButton* widget2 = new QPushButton(QString::fromStdString(infoVector.at(4) + " - " + infoVector.at(5) + "\n" + infoVector.at(3) + infoVector.at(6)));
+			layout2->addWidget(widget2);
+			widget2->setProperty("MitarbeiterName", QString::fromStdString(infoVector.at(5)));
+			widget2->setProperty("MitarbeiterID", QString::fromStdString(infoVector.at(7)));
+			widget2->setObjectName("eintragung2");
+			widget2->setFixedSize(210, 70);
+			widget2->setToolTip(QString::fromStdString(infoVector.at(7)));
+			widget2->setCursor(Qt::PointingHandCursor);
+			layout2->setAlignment(Qt::AlignCenter);
+
+			widget2->setStyleSheet(QString::fromStdString(R"(
+				#eintragung2{
+					border: 0px solid #313131;
+					background-color: )" + color + R"(;
+					color: #212121;
+					font-weight: 900;
+					font-size: 18px;
+					border-radius: 8px;
+				}
+			)"));
+
+			container2->setFixedSize(240, 100);
+
 			planMap->insert(qMakePair(
 				weekdays[std::stoi(infoVector.at(0)) - 1],
-				QString::fromStdString(infoVector.at(1).erase(5, 8))),
-				container);
-
-			std::string originalString = infoVector.at(1);
-			if (originalString.length( ) >= 2) {
-				char secondChar = originalString[1];
-				secondChar += 2;
-				originalString[1] = secondChar;
-			}
-
-			planMap->insert(qMakePair(
-				weekdays[std::stoi(infoVector.at(0)) - 1],
-				QString::fromStdString(originalString)),
-				container);
-		} else {
-
-			planMap->insert(qMakePair(
-				weekdays[std::stoi(infoVector.at(0)) - 1],
-				QString::fromStdString(infoVector.at(1).erase(5, 8))),
-				container);
+				QString::fromStdString(infoVector.at(2).erase(5, 8))),
+				container2);
 		}
+			
+			planMap->insert(qMakePair(
+				weekdays[std::stoi(infoVector.at(0)) - 1],
+				QString::fromStdString(infoVector.at(1).erase(5, 8))),
+				container);
+		
 	}
 
 	return planMap;
