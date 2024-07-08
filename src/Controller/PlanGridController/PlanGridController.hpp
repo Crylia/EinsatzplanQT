@@ -7,7 +7,7 @@
 #include <QPushButton>
 
 #include "../../Core/config/config.hpp"
-#include "../../Core/DBHandler/DBPlan/DBPlan.hpp"
+#include "../../Core/DBHandler/DBHandler/DBHandler.hpp"
 
 class PlanGridController : public QObject {
 	Q_OBJECT

@@ -61,7 +61,7 @@ CREATE TABLE Veranstalter (
             ID SERIAL PRIMARY KEY, 
             ort VARCHAR(1) DEFAULT random_between_two(), 
             raum INTEGER NOT NULL, 
-            name VARCHAR(3) NOT NULL,
+            name VARCHAR(3) NOT NULL UNIQUE,
             dauer INTEGER NOT NULL,
             used INTEGER DEFAULT(0)
             );
@@ -77,7 +77,7 @@ CREATE TABLE StundenImPlan(
 CREATE TABLE Krankmeldung(
     uhrzeit_id INTEGER REFERENCES StundenImPlan(uhrzeit_ID),
     tag INTEGER REFERENCES StundenImPlan(tag),
-    veranstalter_id INTEGER REFERENCES StundenImPlan(veranstalter_ID),
+    veranstalter_id INTEGER REFERENCES StundenImPlan(veranstalter_ID) ON DELETE CASCADE,
     PRIMARY KEY (uhrzeit_ID,tag,veranstalter_id)
 )
 

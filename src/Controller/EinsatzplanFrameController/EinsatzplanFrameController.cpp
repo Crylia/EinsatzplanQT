@@ -16,21 +16,21 @@ EinsatzplanFrameController::EinsatzplanFrameController(QString id, bool admin)
 }
 
 void EinsatzplanFrameController::deleteMember(QString id) {
-	DBPlan* db = new DBPlan(m_connectionString);
+	DBHandler* db = new DBHandler(m_connectionString);
 	db->deleteVeranstalter(id.toStdString( ));
 }
 
 void EinsatzplanFrameController::deleteVeranstaltung(QString veranstaltungsname) {
-	DBPlan* db = new DBPlan(m_connectionString);
+	DBHandler* db = new DBHandler(m_connectionString);
 	db->deleteVeranstaltung(veranstaltungsname.toStdString( ));
 }
 
 void EinsatzplanFrameController::createMember(QString name, QString email, QString passwort, bool admin) {
-	DBPlan* db = new DBPlan(m_connectionString);
-	db->hinzufuegenVeranstalter(email.toStdString( ), name.toStdString( ), passwort.toStdString( ), admin ? "TRUE" : "FALSE");
+	DBHandler* db = new DBHandler(m_connectionString);
+	db->createVeranstalter(email.toStdString( ), name.toStdString( ), passwort.toStdString( ), admin ? "TRUE" : "FALSE");
 }
 
 void EinsatzplanFrameController::createVeranstaltung(QString name, QString raum, QString campus, QString time) {
-	DBPlan* db = new DBPlan(m_connectionString);
-	db->hinzufuegenVeranstaltung(name.toStdString( ), std::to_string((char)time.toStdString( ).at(0) - 48), campus.toStdString( ), raum.toStdString( ));
+	DBHandler* db = new DBHandler(m_connectionString);
+	db->createVeranstaltung(name.toStdString( ), std::to_string((char)time.toStdString( ).at(0) - 48), campus.toStdString( ), raum.toStdString( ));
 }

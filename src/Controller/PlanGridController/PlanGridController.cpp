@@ -28,9 +28,9 @@ PlanGridController::PlanGridController( ) {
 }
 
 QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen( ) {
-	DBPlan* db = new DBPlan(m_connectionString);
+	DBHandler* db = new DBHandler(m_connectionString);
 
-	std::vector<std::string> planData = db->getPlan( );
+	std::vector<std::string> planData = db->getVeranstaltung( );
 
 	for (int i = 0; i < 5; ++i)
 		for (int j = 0; j < 5; ++j) {
@@ -128,7 +128,7 @@ QMap<QPair<QString, QString>, QWidget*>* PlanGridController::getVeranstaltungen(
 }
 
 void PlanGridController::Krankmelden(const int id, int tag, int stunde) {
-	DBPlan db(m_connectionString);
+	DBHandler db(m_connectionString);
 
 	db.meldeKrank(std::to_string(id), std::to_string(tag), std::to_string(stunde));
 }
