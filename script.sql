@@ -1,3 +1,4 @@
+
 CREATE SEQUENCE global_id_seq START WITH 1000000 INCREMENT BY 1;
 
 CREATE OR REPLACE FUNCTION random_between_two()
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Veranstalter(
 CREATE TABLE IF NOT EXISTS StundeImPlan (
   uhrzeit INTEGER REFERENCES Uhrzeit(ID),
   tag INTEGER NOT NULL,
-  veranstaltung VARCHAR(3) REFERENCES Veranstaltung(name) ON DELETE SET NULL,
+  veranstaltung VARCHAR(3) REFERENCES Veranstaltung(name) ON DELETE CASCADE,
   veranstalter INTEGER REFERENCES Veranstalter(ID)  ON DELETE SET NULL,
   PRIMARY KEY(uhrzeit, tag)
 );
@@ -53,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Krank(
   ID SERIAL PRIMARY KEY,
   stundeImPlan_uhrzeit INTEGER,
   stundeImPlan_tag INTEGER,
-  veranstalter INTEGER REFERENCES Veranstalter(ID),
+  veranstalter INTEGER REFERENCES Veranstalter(ID) ON DELETE SET NULL,
   krank BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (stundeImPlan_uhrzeit, stundeImPlan_tag) REFERENCES StundeImPlan(uhrzeit, tag)
 );
