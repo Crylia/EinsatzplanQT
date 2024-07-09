@@ -56,10 +56,9 @@ CREATE TABLE IF NOT EXISTS Krank(
   stundeImPlan_tag INTEGER,
   veranstalter INTEGER REFERENCES Veranstalter(ID) ON DELETE SET NULL,
   krank BOOLEAN DEFAULT FALSE,
-  FOREIGN KEY (stundeImPlan_uhrzeit, stundeImPlan_tag) REFERENCES StundeImPlan(uhrzeit, tag)
+  FOREIGN KEY (stundeImPlan_uhrzeit, stundeImPlan_tag) REFERENCES StundeImPlan(uhrzeit, tag) ON DELETE CASCADE
 );
 
--- Function to delete StundeImPlan when Veranstaltung is deleted
 CREATE OR REPLACE FUNCTION delete_stundeimplan_for_veranstaltung()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -94,13 +93,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger to call the above function
 CREATE TRIGGER trg_update_stundeimplan_for_veranstalter
 AFTER DELETE ON Veranstalter
 FOR EACH ROW
 EXECUTE FUNCTION update_stundeimplan_for_veranstalter();
 
--- Function to update arbeitszeit of Veranstalter when assigned to StundeImPlan
 CREATE OR REPLACE FUNCTION update_arbeitszeit_for_veranstalter()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -111,13 +108,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger to call the above function
 CREATE TRIGGER trg_update_arbeitszeit_for_veranstalter
 AFTER INSERT ON StundeImPlan
 FOR EACH ROW
 EXECUTE FUNCTION update_arbeitszeit_for_veranstalter();
 
--- Function to generate the plan
 CREATE OR REPLACE FUNCTION generate_plan()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -126,11 +121,8 @@ DECLARE
     available_veranstalter RECORD;
     random_day INTEGER;
 BEGIN
-    -- Loop through each available time slot
     FOR u_row IN SELECT * FROM Uhrzeit LOOP
-        -- Loop through each available Veranstaltung
         FOR v_row IN SELECT * FROM Veranstaltung WHERE used_in_plan = 0 LOOP
-            -- Find an available Veranstalter with matching ort and not scheduled in the same tag and uhrzeit
             SELECT * INTO available_veranstalter
             FROM Veranstalter v
             WHERE v.arbeitszeit + v_row.dauer <= 18
@@ -149,32 +141,26 @@ BEGIN
                   WHERE prev_sp.uhrzeit = u_row.ID - 1
                     AND prev_sp.tag = random_day
                     AND prev_sp.veranstalter = v.ID
-                    AND prev_va.ort <> v_row.ort  -- Ensure different ort for previous hour
+                    AND prev_va.ort <> v_row.ort 
               )
             ORDER BY v.arbeitszeit ASC
             LIMIT 1;
 
             IF FOUND THEN
-                -- Check if there is already an event scheduled for this tag and uhrzeit combination
                 random_day = random_between_days();
                 IF NOT EXISTS (
                     SELECT 1
                     FROM StundeImPlan
                     WHERE uhrzeit = u_row.ID AND tag = random_day
                 ) THEN
-                    -- If an available Veranstalter is found, insert into StundeImPlan
                     INSERT INTO StundeImPlan (uhrzeit, tag, veranstaltung, veranstalter)
                     VALUES (u_row.ID, random_day, v_row.name, available_veranstalter.ID);
 
-                    -- Update the used_in_plan flag and arbeitszeit
                     UPDATE Veranstaltung SET used_in_plan = used_in_plan + 1 WHERE name = v_row.name;
                     UPDATE Veranstalter SET arbeitszeit = arbeitszeit + v_row.dauer WHERE ID = available_veranstalter.ID;
 
-                    -- If the duration is 4, also insert for the next time slot
                     IF v_row.dauer = 4 THEN
-                        -- Ensure the next time slot is within the range
                         IF EXISTS (SELECT 1 FROM Uhrzeit WHERE ID = u_row.ID + 1) THEN
-                            -- Check if the next time slot is free
                             IF NOT EXISTS (
                                 SELECT 1
                                 FROM StundeImPlan
@@ -183,7 +169,6 @@ BEGIN
                                 INSERT INTO StundeImPlan (uhrzeit, tag, veranstaltung, veranstalter)
                                 VALUES (u_row.ID + 1, random_day, v_row.name, available_veranstalter.ID);
 
-                                -- Mark the second part as used in the plan
                                 UPDATE Veranstaltung SET used_in_plan = used_in_plan + 1 WHERE name = v_row.name;
                             END IF;
                         END IF;
@@ -206,7 +191,6 @@ DECLARE
     new_veranstalter_id INTEGER;
     v_name VARCHAR(3);
 BEGIN
-    -- Find the name of the Veranstaltung for the same stundeImPlan
     SELECT veranstaltung.name INTO v_name
     FROM Veranstaltung
     WHERE name = (SELECT veranstaltung FROM StundeImPlan WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag);
@@ -243,18 +227,15 @@ BEGIN
     ORDER BY v.arbeitszeit ASC
     LIMIT 1;
 
-    -- Check if a new veranstalter was found
     IF new_veranstalter_id IS NOT NULL THEN
         UPDATE Veranstalter
         SET arbeitszeit = arbeitszeit + (SELECT dauer FROM Veranstaltung WHERE name = v_name)
         WHERE ID = new_veranstalter_id;
 
-        -- Update the StundeImPlan with the replacement
         UPDATE StundeImPlan
         SET veranstalter = new_veranstalter_id
         WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag;
     ELSE
-        -- If no suitable veranstalter is found, set veranstalter to NULL
         UPDATE StundeImPlan
         SET veranstalter = NULL
         WHERE uhrzeit = NEW.stundeImPlan_uhrzeit AND tag = NEW.stundeImPlan_tag;
@@ -277,7 +258,6 @@ BEGIN
     FOR affected_row IN
         SELECT * FROM StundeImPlan WHERE veranstalter = OLD.id
     LOOP
-        -- Find a new suitable Veranstalter
         SELECT * INTO new_veranstalter
         FROM Veranstalter v
         WHERE v.arbeitszeit + (SELECT dauer FROM Veranstaltung va WHERE va.name = affected_row.veranstaltung) <= 18
