@@ -88,7 +88,7 @@ bool DBHandler::createVeranstaltung(const std::string& name, const std::string& 
 			"INSERT INTO Veranstaltung (name, ort, raum, dauer) VALUES ({}, {}, {}, {})",
 			W.quote(name), W.quote(cmp), W.quote(raum), W.quote(dauer)
 		);
-		fmt::print(query);
+		fmt::println(query);
 		W.exec(query);
 		W.commit( );
 		return true;
