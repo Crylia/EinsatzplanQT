@@ -204,7 +204,7 @@ void EinsatzplanFrame::deleteVeranstaltung( ) {
 
 void EinsatzplanFrame::createVeranstaltung( ) {
 	CreateVerDialog dialog(this);
-	if (dialog.exec( ) == QDialog::Accepted) {
+	if (dialog.exec( ) == QDialog::Accepted && dialog.getName().size() == 3) {
 		QString name = dialog.getName( );
 		QString raum = dialog.getRaum( );
 		QString campus = dialog.getCampus( );

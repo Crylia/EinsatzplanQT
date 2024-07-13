@@ -13,7 +13,7 @@ inline static const std::map<std::string, std::string>& load_config( ) {
 #if defined(_WIN32) || defined(_WIN64)
 	std::string filename = std::string(std::getenv("USER")) + "\\config.cfg";
 #elif defined(__unix__) || defined(__APPLE__)
-	std::string filename = std::string(std::getenv("HOME")) + "/Dokumente/git/EinsatzplanQT/config.cfg";
+	std::string filename = std::string(std::getenv("HOME")) + "/Dokumente/Studium/Studium Dokumente/4. Semester/SWE/EinsatzplanQT/config.cfg";
 #endif
 
 	if (!is_loaded || fn != filename) {
